@@ -8,68 +8,120 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 </head>
+<body>
 <!--Header-->
-<header class="p-3 text-bg-dark">
+<nav class="navbar navbar-expand-lg header">
   <div class="container">
-    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-        <img src="assets/Logo/FilmVault__3_-removebg-preview.png" class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap" alt="Logo"></img>
-      </a>
-
-      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-        <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
-        <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
-        <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-        <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+    <a class="navbar-brand" href="./index.html">
+      <img src="./assets/Logo/FilmVault_purple-removebg-preview.png" alt="Logo" width="70" height="55" class="d-inline-block align-text-top">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <form class="d-flex me-3 w-100" role="search">
+        <div class="input-group">
+          <span class="input-group-text rounded-start-pill"><i class="fa fa-search"></i></span>
+          <input type="text" class="form-control" placeholder="Search by movie name" aria-label="Search Movies">
+          <span class="input-group-text rounded-end-circle"><i class="fa fa-sliders"></i></span>
+        </div>
+      </form>
+      <ul class="navbar-nav">
+        <li class="nav-item border border-white rounded-circle mx-1 px-1">
+          <a class="nav-link text-light" href="/index.html"><i class="fa fa-heart"></i></a>
+        </li>
+        <li class="nav-item border border-white rounded-circle mx-1 px-1">
+          <a class="nav-link text-light" href="/index.html"><i class="fa fa-bell"></i></a>
+        </li>
+        <li class="nav-item border border-white rounded-circle mx-1 px-1">
+          <a class="nav-link text-light" href="/index.html"><i class="fa fa-user"></i></a>
+        </li>
       </ul>
 
-      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-        <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
-      </form>
-
-      <div class="text-end">
-        <button type="button" class="btn btn-outline-light me-2">Login</button>
-        <button type="button" class="btn btn-warning">Sign-up</button>
-      </div>
     </div>
   </div>
-</header>
+</nav>
 
 <!--Sign Up-->
 <div class="container col-xl-10 col-xxl-8 px-4 py-5">
   <div class="row align-items-center g-lg-5 py-5">
     <div class="col-lg-7 text-center text-lg-start">
-      <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Vertically centered hero sign-up form</h1>
+      <h1 class="display-4 fw-bold lh-1 mb-3">Login to FilmVault</h1>
       <p class="col-lg-10 fs-4">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
     </div>
     <div class="col-md-10 mx-auto col-lg-5">
-      <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+      <form class="p-4 p-md-5 login-card shadow rounded-0">
         <div class="form-floating mb-3">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+          <input type="email" class="form-control rounded-0" id="floatingInput" placeholder="name@example.com">
           <label for="floatingInput">Email address</label>
+
         </div>
         <div class="form-floating mb-3">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+          <input type="password" class="form-control rounded-0" id="floatingPassword" placeholder="Password">
           <label for="floatingPassword">Password</label>
         </div>
-        <div class="checkbox mb-3">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-        </div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
+        <button class="w-100 btn btn-lg rounded-0" type="submit">Login</button>
         <hr class="my-4">
-        <small class="text-body-secondary">By clicking Sign up, you agree to the terms of use.</small>
+        <p class="fw-light">Don't have an account? <a href="/signup.html">Sign Up here</a> </p>
       </form>
     </div>
   </div>
 </div>
-<body>
+<!--Footer-->
+<div class="footer">
+  <div class="container">
+    <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5">
+      <div class="col mb-3">
+        <a href="/" class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none">
+          <img src="./assets/Logo/FilmVault_purple-removebg-preview.png" alt="Logo" width="100" height="78" class="bi me-2">
+        </a>
+        <p class="text-light">Your Ultimate Cinematic Companion. Discover, organize, and explore your favorite films with ease. Create personalized watchlists, leave insightful reviews, and connect with fellow movie enthusiasts. Dive into a world of cinema with FilmVault.</p>
+        <p class="text-light">&copy; 2024 FilmVault</p>
+      </div>
 
+      <div class="col mb-3">
+
+      </div>
+
+      <div class="col mb-3">
+        <h5>Section</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Home</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Features</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Pricing</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">FAQs</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">About</a></li>
+        </ul>
+      </div>
+
+      <div class="col mb-3">
+        <h5>Section</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Home</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Features</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Pricing</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">FAQs</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">About</a></li>
+        </ul>
+      </div>
+
+      <div class="col mb-3">
+        <h5>Section</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Home</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Features</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Pricing</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">FAQs</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">About</a></li>
+        </ul>
+      </div>
+    </footer>
+  </div>
+</div>
 </body>
 </html>

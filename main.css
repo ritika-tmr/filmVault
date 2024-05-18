@@ -1,3 +1,4 @@
+
 body {
    background-color: #042A45 !important;
    color: white !important;
@@ -42,4 +43,20 @@ body {
 
 .heart {
    color: #D11AEF;
+}
+
+.login-card {
+   background-color: #205376;
+}
+
+.login-card input {
+   background-color: #0A2033;
+   color: white;
+   border: none;
+}
+
+.login-card button {
+   background-color: #9173E5;
+   color: white;
+   border: none;
 }
