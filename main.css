@@ -39,6 +39,7 @@ body {
 .card {
    background-color: #032034 !important;
    color: white !important;
+   cursor: pointer;
 }
 
 .heart {
@@ -59,4 +60,9 @@ body {
    background-color: #9173E5;
    color: white;
    border: none;
+}
+.card:hover {
+   transform: translateY(-10px);
+   box-shadow: 23px 21px 43px -17px rgba(0,0,0,.75);
+   transition: all 0.3s ease 0s;
 }
