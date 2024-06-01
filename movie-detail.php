@@ -76,7 +76,7 @@ try {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>FilmVault</title>
-  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="movie.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -129,7 +129,7 @@ try {
             <span>
               <?php
               for ($i = 1; $i <= 5; $i++) {
-                  if($row['avg_rating'] >= $i) {
+                  if($ratingRow && $ratingRow>= $i) {
                       echo '<i class="fa fa-star checked"></i>';
                   } else {
                       echo '<i class="fa fa-star"></i>';
@@ -159,15 +159,23 @@ try {
         ?>
     </div>
 </div>
-<!--Poster-->
-  <div class="col-md-4">
-    <img src="<?php echo htmlspecialchars($movie['movie_image']); ?>" class="img-fluid" alt="Movie Image">
-  </div>
+
 <!--Description-->
 
 <div class="container mt-3">
+
     <div class="row g-3">
-        <div class="col-8">
+        <div class="col-3 d-flex flex-column">
+            <!--Poster-->
+            <div class="my-3">
+                <img src="<?php echo htmlspecialchars($movie['movie_image']); ?>" class="img-fluid" alt="Movie Image">
+            </div>
+            <div class="d-grid gap-2" style="max-width: 14rem">
+                <button class="btn btn-secondary purple-button">Add To WatchList <i class="fa fa-heart"></i></button>
+                <button class="btn btn-secondary yellow-button">Rate this Movie <i class="fa fa-star"></i></button>
+            </div>
+        </div>
+        <div class="col-9">
             <h5>Description</h5>
             <p><?php echo $movie['overview']; ?></p>
             <hr class="my-4">
@@ -179,9 +187,9 @@ try {
             <h5>Cast</h5>
             <p>
             <ul>
-              <?php foreach ($cast as $member): ?>
-                <li><?php echo $member['person_name'] . ' as ' . $member['character_name']; ?></li>
-              <?php endforeach; ?>
+                <?php foreach ($cast as $member): ?>
+                    <li><?php echo $member['person_name'] . ' as ' . $member['character_name']; ?></li>
+                <?php endforeach; ?>
             </ul>
 
             </p>
@@ -193,9 +201,6 @@ try {
             <h5>Country</h5>
             <p><?php echo implode(', ', $countries); ?></p>
             <hr class="my-4">
-        </div>
-        <div class="col-4">
-            <button class="btn">Add To WatchList <i class="fa fa-heart"></i></button>
         </div>
     </div>
 

@@ -46,13 +46,37 @@ body {
 .fa-heart:hover {
     color: #D11AEF;
 }
+.login-card {
+    background-color: #205376;
+}
+
+.login-card input {
+    background-color: #0A2033;
+    color: white;
+    border: none;
+}
+
+.login-card button {
+    background-color: #9173E5;
+    color: white;
+    border: none;
+}
+.purple-button {
+    background-color: #9173E5 !important;
+    color: white !important;
+    border: none !important;
+}
+.big-icon {
+    font-size: 3rem !important;
+}
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 23px 21px 43px -17px rgba(0,0,0,.75);
+    transition: all 0.3s ease 0s;
+}
 .truncated-text {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    -webkit-line-clamp: 5; /* Number of lines to show */
-}
-.img-fluid {
-    aspect-ratio: 3 / 4 !important;
-    max-width: 14rem !important;
+    -webkit-line-clamp: 3; /* Number of lines to show */
 }

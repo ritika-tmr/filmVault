@@ -46,13 +46,14 @@ body {
 .fa-heart:hover {
     color: #D11AEF;
 }
-.truncated-text {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    -webkit-line-clamp: 5; /* Number of lines to show */
-}
+
 .img-fluid {
     aspect-ratio: 3 / 4 !important;
     max-width: 14rem !important;
+}
+.purple-button {
+    background: #9173E5 !important;
+}
+.yellow-button {
+    background: #F6AE2D !important;
 }
