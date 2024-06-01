@@ -1,7 +1,7 @@
 <?php
 try {
-    $pdo = new PDO('mysql:host=localhost;dbname=filmVault', 'root', '');
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $db = new PDO('mysql:host=localhost;dbname=filmVault', 'root', '');
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     die('Connection failed: ' . $e->getMessage());
 }

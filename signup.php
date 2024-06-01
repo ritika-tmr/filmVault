@@ -16,16 +16,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $passwordHash = password_hash($password, PASSWORD_BCRYPT);
 
         // Check if email already exists
-        $stmt = $pdo->prepare('SELECT * FROM Users WHERE user_email = ?');
+        $stmt = $db->prepare('SELECT * FROM Users WHERE user_email = ?');
         $stmt->execute([$email]);
         if ($stmt->fetch()) {
             $error = 'Email already exists.';
         } else {
             // Insert new user
             try {
-                $stmt = $pdo->prepare('INSERT INTO Users (username, user_email, user_pwd) VALUES (?, ?, ?)');
+                $stmt = $db->prepare('INSERT INTO Users (username, user_email, user_pwd) VALUES (?, ?, ?)');
                 if ($stmt->execute([$username, $email, $passwordHash])) {
-                    $userId = $pdo->lastInsertId();
+                    $userId = $db->lastInsertId();
                     $success = "Signup successful! Your user ID is $userId. You can now <a href='login.php'>login</a>.";
                 } else {
                     $error = 'Error: Could not sign up.';
