@@ -77,7 +77,7 @@ if (isset($_GET['languages'])  && $_GET['languages'] != '') {
 <!--Header-->
 <nav class="navbar navbar-expand-lg header">
     <div class="container">
-        <a class="navbar-brand" href="./index.html">
+        <a class="navbar-brand" href="./index.php">
             <img src="./assets/Logo/FilmVault_purple2-removebg-preview.png" alt="Logo" width="70" height="55" class="d-inline-block align-text-top">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

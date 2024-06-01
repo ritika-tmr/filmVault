@@ -6,7 +6,8 @@ $movie_id = isset($_GET['movie_id']) ? intval($_GET['movie_id']) : 0;
 if ($movie_id == 0) {
     die("Invalid movie ID.");
 }
-
+$error = '';
+$success = '';
 try {
     // Fetch movie details
     $stmt = $db->prepare("SELECT * FROM Movie WHERE movie_id = :movie_id");
@@ -21,28 +22,24 @@ try {
     die('Query failed: ' . $e->getMessage());
 }
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $rating = $_POST['rating'];
+    $review = $_POST['review'];
 
-    $stmt = $db->prepare('SELECT * FROM Users WHERE user_email = ?');
-    $stmt->execute([$email]);
-    $user = $stmt->fetch();
+    if ($rating && $review) {
 
-    if ($user && password_verify($password, $user['user_pwd'])) {
-        // Start the session (if not already started)
-        session_start();
-
-        // Store user data in session for later use
-        $_SESSION['user_id'] = $user['user_id'];
-        $_SESSION['username'] = $user['username'];
-
-        // Redirect the user to index.html
-        header("Location: index.html");
-        exit(); // Make sure to exit to prevent further execution
+        try {
+            $stmt = $db->prepare('INSERT INTO Rating (movie_id,rating, review) VALUES (?, ?, ?)');
+            if ($stmt -> execute([$movie_id, $rating, $review])){
+                $success = "<script>alert('Rating successful!'); window.location = 'index.php';</script>";
+            } else {
+                $error = 'Error: Could add review.';
+            }
+        } catch (Exception $e) {
+            $error = 'Error Uploading' . $e->getMessage();
+        }
     } else {
-        echo "Invalid email or password.";
+        $error = "Invalid Rating or Review";
     }
-
 }
 ?>
 
@@ -53,14 +50,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>FilmVault: Rating</title>
     <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
 <!-- Header -->
 <nav class="navbar navbar-expand-lg header">
     <div class="container">
-        <a class="navbar-brand" href="./index.html">
-            <img src="./assets/Logo/FilmVault_purple-removebg-preview.png" alt="Logo" width="70" height="55" class="d-inline-block align-text-top">
+        <a class="navbar-brand" href="./index.php">
+            <img src="./assets/Logo/FilmVaultNew-removebg-preview.png" alt="Logo" width="70" height="55" class="d-inline-block align-text-top">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -73,43 +71,111 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <span class="input-group-text rounded-end-circle"><i class="fa fa-sliders"></i></span>
                 </div>
             </form>
-            <ul class="navbar-nav">
-                <li class="nav-item border border-white rounded-circle mx-1 px-1">
-                    <a class="nav-link text-light" href="/index.html"><i class="fa fa-heart"></i></a>
-                </li>
-                <li class="nav-item border border-white rounded-circle mx-1 px-1">
-                    <a class="nav-link text-light" href="/index.html"><i class="fa fa-bell"></i></a>
-                </li>
-                <li class="nav-item border border-white rounded-circle mx-1 px-1">
-                    <a class="nav-link text-light" href="/index.html"><i class="fa fa-user"></i></a>
-                </li>
-            </ul>
         </div>
+        <ul class="navbar-nav flex-row">
+            <li class="nav-item border-purple rounded-circle mx-1 px-1">
+                <a class="nav-link text-light" href="/index.html"><i class="fa fa-heart"></i></a>
+            </li>
+            <li class="nav-item border-purple rounded-circle mx-1 px-1">
+                <a class="nav-link text-light" href="/index.html"><i class="fa fa-bell"></i></a>
+            </li>
+            <li class="nav-item border-purple rounded-circle mx-1 px-1">
+                <a class="nav-link text-light" href="/index.html"><i class="fa fa-user"></i></a>
+            </li>
+        </ul>
     </div>
 </nav>
 
 <!-- Rate -->
 <div class="container col-xl-10 col-xxl-8 px-4 py-5">
-    <div class="row align-items-center g-lg-5 py-5">
-        <div class="col-lg-7 text-center text-lg-start">
-            <h1 class="display-4 fw-bold lh-1 mb-3">Login to FilmVault</h1>
-            <p class="col-lg-10 fs-4">Access your account and explore the world of cinema!</p>
+    <div class="row align-items-center">
+        <div class="col-md-4">
+            <img src="<?php echo htmlspecialchars($movie['movie_image']); ?>" class="img-fluid rounded-start" alt="<?php echo $movie['title']; ?>">
         </div>
-        <div class="col-md-10 mx-auto col-lg-5">
-            <form method="POST" class="p-4 p-md-5 login-card shadow rounded-0">
-                <div class="form-floating mb-3">
-                    <input type="email" class="form-control rounded-0" id="floatingEmail" name="email" placeholder="name@example.com" required>
-                    <label for="floatingEmail">Email address</label>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="display-4 fw-bold lh-1 mb-3">Review <?php echo $movie['title']; ?> </h5>
+                <?php if (!empty($error)): ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?php echo $error; ?>
+                    </div>
+                <?php endif; ?>
+                <?php if (!empty($success)): ?>
+                    <div class="alert alert-success" role="alert">
+                        <?php echo $success; ?>
+                    </div>
+                <?php endif; ?>
+                <form method="POST" class="p-4 p-md-5 rounded-0">
+                <div class="card-text mb-3">
+                    <label>Rating</label>
+                    <select class="form-select" aria-label=" select rating" name="rating" required>
+                        <option selected disabled>Select a rating</option>
+                        <option value="1">1 Star</option>
+                        <option value="2">2 Stars</option>
+                        <option value="3">3 Stars</option>
+                        <option value="4">4 Stars</option>
+                        <option value="5">5 Stars</option>
+                    </select>
+
                 </div>
-                <div class="form-floating mb-3">
-                    <input type="password" class="form-control rounded-0" id="floatingPassword" name="password" placeholder="Password" required>
-                    <label for="floatingPassword">Password</label>
+                <div class="card-text mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Review</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" required name="review" placeholder="Write your review" rows="10"></textarea>
                 </div>
-                <button class="w-100 btn btn-lg rounded-0" type="submit">Login</button>
-                <hr class="my-4">
-                <p class="fw-light">Don't have an account? <a href="signup.php">Sign Up here</a></p>
+                <button class="w-100 btn btn-lg btn-secondary purple-button" type="submit">Submit</button>
             </form>
+            </div>
         </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="container">
+        <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5">
+            <div class="col mb-3">
+                <a href="/" class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none">
+                    <img src="./assets/Logo/FilmVault_purple2-removebg-preview.png" alt="Logo" width="100" height="78" class="bi me-2">
+                </a>
+                <p class="text-light">Your Ultimate Cinematic Companion. Discover, organize, and explore your favorite films with ease. Create personalized watchlists, leave insightful reviews, and connect with fellow movie enthusiasts. Dive into a world of cinema with FilmVault.</p>
+                <p class="text-light">&copy; 2024 FilmVault</p>
+            </div>
+
+            <div class="col mb-3">
+
+            </div>
+
+            <div class="col mb-3">
+                <h5>Section</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Home</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Features</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Pricing</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">FAQs</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">About</a></li>
+                </ul>
+            </div>
+
+            <div class="col mb-3">
+                <h5>Section</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Home</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Features</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Pricing</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">FAQs</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">About</a></li>
+                </ul>
+            </div>
+
+            <div class="col mb-3">
+                <h5>Section</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Home</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Features</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Pricing</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">FAQs</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">About</a></li>
+                </ul>
+            </div>
+        </footer>
     </div>
 </div>
 </body>

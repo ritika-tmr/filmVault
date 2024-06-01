@@ -89,7 +89,7 @@ try {
 <!--Header-->
 <nav class="navbar navbar-expand-lg header">
   <div class="container">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="./index.php">
       <img src="./assets/Logo/FilmVaultNew-removebg-preview.png" alt="Logo" width="70" height="55" class="d-inline-block align-text-top">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -172,7 +172,7 @@ try {
             </div>
             <div class="d-grid gap-2" style="max-width: 14rem">
                 <button class="btn btn-secondary purple-button">Add To WatchList <i class="fa fa-heart"></i></button>
-                <button class="btn btn-secondary yellow-button">Rate this Movie <i class="fa fa-star"></i></button>
+                <button class="btn btn-secondary yellow-button" onclick="redirectToRating('<?php echo $movie['movie_id'] ?> '); ">Rate this Movie <i class="fa fa-star"></i></button>
             </div>
         </div>
         <div class="col-9">
@@ -256,6 +256,12 @@ try {
     </footer>
   </div>
 </div>
+<script>
+    function redirectToRating(movie_id) {
+        window.location.href = 'rating.php?movie_id=' + movie_id;
+    }
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
