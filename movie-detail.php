@@ -129,7 +129,7 @@ try {
             <span>
               <?php
               for ($i = 1; $i <= 5; $i++) {
-                  if($ratingRow && $ratingRow>= $i) {
+                  if($ratingRow && $ratingRow['avg_rating']>= $i) {
                       echo '<i class="fa fa-star checked"></i>';
                   } else {
                       echo '<i class="fa fa-star"></i>';
