@@ -147,7 +147,7 @@ $topMovies = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     echo '<span> <i class="fa fa-heart"></i></span>';
                     echo '</div>';
                     echo '<h5 class="card-title">' . htmlspecialchars($row['title']) . '</h5>';
-                    echo '<p class="card-text text-truncate">'. $row['overview'] .'</p>';
+                    echo '<p class="card-text truncated-text">'. $row['overview'] .'</p>';
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
