@@ -307,7 +307,7 @@ if (!$comedyMovies) {
             if (count($comedyMovies) > 0) {
                 foreach ($comedyMovies as $row) {
                     echo '<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">';
-                    echo '<div class="card">';
+                    echo '<div id="'. $row['movie_id']. '" class="card">';
                     echo '<img src="' . htmlspecialchars($row['movie_image']) . '" class="card-img-top" alt="' . htmlspecialchars($row['title']) . '">';
                     echo '<div class="card-body">';
                     echo '<div class="d-flex justify-content-between">';
