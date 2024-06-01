@@ -1,0 +1,77 @@
+
+body {
+    background-color: #1D133C !important;
+    color: white !important;
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.playfair-display {
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.header {
+    background-color: #010B11;
+    color: white;
+}
+
+.base-color {
+    background-color: #042A45;
+    color: white;
+}
+
+.footer {
+    background-color: #010B11;
+    color: #86A8CF;
+}
+.checked {
+    color: #F6AE2D;
+}
+.card {
+    background-color: #010B11 !important;
+    color: white !important;
+    cursor: pointer;
+}
+.border-purple {
+    border: 1px solid #9173E5;
+}
+.heart {
+    color: #D11AEF;
+}
+.fa-heart:hover {
+    color: #D11AEF;
+}
+.login-card {
+    background-color: #205376;
+}
+
+.login-card input {
+    background-color: #0A2033;
+    color: white;
+    border: none;
+}
+
+.login-card button {
+    background-color: #9173E5;
+    color: white;
+    border: none;
+}
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 23px 21px 43px -17px rgba(0,0,0,.75);
+    transition: all 0.3s ease 0s;
+}
+.truncated-text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 3; /* Number of lines to show */
+}
+.card-img-top {
+    height: 25rem !important;
+}

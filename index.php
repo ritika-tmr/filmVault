@@ -7,14 +7,61 @@ $query_top = "SELECT m.movie_id, m.title, m.overview, m.movie_image, AVG(r.ratin
               GROUP BY m.movie_id, m.title, m.overview, m.movie_image
               ORDER BY avg_rating DESC
               LIMIT 4;";
+$query_action = "SELECT m.movie_id, m.title, m.overview, m.movie_image,
+              AVG(r.rating) AS avg_rating, GROUP_CONCAT(g.genre_name) AS genre_name
+              FROM movie m
+              LEFT JOIN rating r on r.movie_id = m.movie_id
+              LEFT JOIN movie_genre mg on mg.movie_id = m.movie_id
+              LEFT JOIN genre g on g.genre_id = mg.genre_id
+              WHERE g.genre_name = 'Action'
+              GROUP BY m.movie_id, m.title, m.overview, m.movie_image
+              ORDER BY avg_rating DESC
+              LIMIT 4;";
+$query_romance = "SELECT m.movie_id, m.title, m.overview, m.movie_image,
+              AVG(r.rating) AS avg_rating, GROUP_CONCAT(g.genre_name) AS genre_name
+              FROM movie m
+              LEFT JOIN rating r on r.movie_id = m.movie_id
+              LEFT JOIN movie_genre mg on mg.movie_id = m.movie_id
+              LEFT JOIN genre g on g.genre_id = mg.genre_id
+              WHERE g.genre_name = 'Romance'
+              GROUP BY m.movie_id, m.title, m.overview, m.movie_image
+              ORDER BY avg_rating DESC
+              LIMIT 4;";
+$query_comedy = "SELECT m.movie_id, m.title, m.overview, m.movie_image,
+              AVG(r.rating) AS avg_rating, GROUP_CONCAT(g.genre_name) AS genre_name
+              FROM movie m
+              LEFT JOIN rating r on r.movie_id = m.movie_id
+              LEFT JOIN movie_genre mg on mg.movie_id = m.movie_id
+              LEFT JOIN genre g on g.genre_id = mg.genre_id
+              WHERE g.genre_name = 'Comedy'
+              GROUP BY m.movie_id, m.title, m.overview, m.movie_image
+              ORDER BY avg_rating DESC
+              LIMIT 4;";
 
 $stmt = $db->prepare($query_top);
 $stmt->execute();
 $topMovies = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    if (!$topMovies) {
-        echo "Error";
-    }
+if (!$topMovies) {
+    echo "Error";
+}
+$stmt1 = $db->prepare($query_action);
+$stmt1->execute();
+$actionMovies = $stmt1->fetchAll(PDO::FETCH_ASSOC);
+if (!$actionMovies) {
+    echo "Error";
+}
+$stmt2 = $db->prepare($query_romance);
+$stmt2->execute();
+$romanceMovies = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+if (!$romanceMovies) {
+    echo "Error";
+}
+$stmt3 = $db->prepare($query_comedy);
+$stmt3->execute();
+$comedyMovies = $stmt3->fetchAll(PDO::FETCH_ASSOC);
+if (!$comedyMovies) {
+    echo "Error";
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -22,7 +69,7 @@ $topMovies = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>FilmVault</title>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="homepage.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -159,110 +206,135 @@ $topMovies = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 </div>
-<!--Category Lists-->
+<!--Category romance movie Lists-->
 <div class="container py-3 my-3">
     <div class="row g-5">
         <div class="col-sm-6 col-md-4 col-lg-2">
-            <h3>Top Movies This Week</h3>
+            <h3>Top Romantic Movies This Week</h3>
             <p class="lead">
-                Check out this week’s most popular movies and find out where to watch them.
+                Check out this week’s most popular romantic movies and find out where to watch them.
             </p>
         </div>
         <!--Card-->
         <div class="row col-sm-6 col-md-8 col-lg-10 g-3">
-            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                <div class="card">
-                    <img src="./assets/MoviePoster/AvengersEndgame2.jpeg" class="card-img-top" alt="logo">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <span>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star"></i>
-                        </span>
-                            <span>
-                            <i class="fa fa-heart heart"></i>
-                        </span>
-                        </div>
-
-                        <h5 class="card-title">Avenger Endgame</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                <div class="card">
-                    <img src="./assets/MoviePoster/AvengersEndgame2.jpeg" class="card-img-top" alt="logo">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <span>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star"></i>
-                        </span>
-                            <span>
-                            <i class="fa fa-heart heart"></i>
-                        </span>
-                        </div>
-
-                        <h5 class="card-title">Avenger Endgame</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                <div class="card">
-                    <img src="./assets/MoviePoster/AvengersEndgame2.jpeg" class="card-img-top" alt="logo">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <span>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star"></i>
-                        </span>
-                            <span>
-                            <i class="fa fa-heart heart"></i>
-                        </span>
-                        </div>
-
-                        <h5 class="card-title">Avenger Endgame</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                <div class="card">
-                    <img src="./assets/MoviePoster/AvengersEndgame2.jpeg" class="card-img-top" alt="logo">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <span>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star"></i>
-                        </span>
-                            <span>
-                            <i class="fa fa-heart heart"></i>
-                        </span>
-                        </div>
-
-                        <h5 class="card-title">Avenger Endgame</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-            </div>
+        <?php
+            if (count($romanceMovies) > 0) {
+                foreach ($romanceMovies as $row) {
+                    echo '<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">';
+                    echo '<div class="card">';
+                    echo '<img src="' . htmlspecialchars($row['movie_image']) . '" class="card-img-top" alt="' . htmlspecialchars($row['title']) . '">';
+                    echo '<div class="card-body">';
+                    echo '<div class="d-flex justify-content-between">';
+                    echo '<span>';
+                    for ($i = 1; $i <= 5; $i++) {
+                        if($row['avg_rating'] >= $i) {
+                            echo '<i class="fa fa-star checked"></i>';
+                        } else {
+                            echo '<i class="fa fa-star"></i>';
+                        }
+                    }
+                    echo '</span>';
+                    echo '<span> <i class="fa fa-heart"></i></span>';
+                    echo '</div>';
+                    echo '<h5 class="card-title">' . htmlspecialchars($row['title']) . '</h5>';
+                    echo '<p class="card-text truncated-text">'. $row['overview'] .'</p>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                }
+            } else {
+                echo "<div>No data found</div>";
+            }
+            ?>
         </div>
     </div>
 </div>
 
+<div class="container py-3 my-3">
+    <div class="row g-5">
+        <div class="col-sm-6 col-md-4 col-lg-2">
+            <h3>Top Action Movies This Week</h3>
+            <p class="lead">
+                Check out this week’s most popular action movies and find out where to watch them.
+            </p>
+        </div>
+        <!--Card-->
+        <div class="row col-sm-6 col-md-8 col-lg-10 g-3">
+        <?php
+            if (count($actionMovies) > 0) {
+                foreach ($actionMovies as $row) {
+                    echo '<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">';
+                    echo '<div class="card">';
+                    echo '<img src="' . htmlspecialchars($row['movie_image']) . '" class="card-img-top" alt="' . htmlspecialchars($row['title']) . '">';
+                    echo '<div class="card-body">';
+                    echo '<div class="d-flex justify-content-between">';
+                    echo '<span>';
+                    for ($i = 1; $i <= 5; $i++) {
+                        if($row['avg_rating'] >= $i) {
+                            echo '<i class="fa fa-star checked"></i>';
+                        } else {
+                            echo '<i class="fa fa-star"></i>';
+                        }
+                    }
+                    echo '</span>';
+                    echo '<span> <i class="fa fa-heart"></i></span>';
+                    echo '</div>';
+                    echo '<h5 class="card-title">' . htmlspecialchars($row['title']) . '</h5>';
+                    echo '<p class="card-text truncated-text">'. $row['overview'] .'</p>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                }
+            } else {
+                echo "<div>No data found</div>";
+            }
+            ?>
+        </div>
+    </div>
+</div>
 
+<div class="container py-3 my-3">
+    <div class="row g-5">
+        <div class="col-sm-6 col-md-4 col-lg-2">
+            <h3>Top Comedy Movies This Week</h3>
+            <p class="lead">
+                Check out this week’s most popular comedy movies and find out where to watch them.
+            </p>
+        </div>
+        <!--Card-->
+        <div class="row col-sm-6 col-md-8 col-lg-10 g-3">
+        <?php
+            if (count($comedyMovies) > 0) {
+                foreach ($comedyMovies as $row) {
+                    echo '<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">';
+                    echo '<div class="card">';
+                    echo '<img src="' . htmlspecialchars($row['movie_image']) . '" class="card-img-top" alt="' . htmlspecialchars($row['title']) . '">';
+                    echo '<div class="card-body">';
+                    echo '<div class="d-flex justify-content-between">';
+                    echo '<span>';
+                    for ($i = 1; $i <= 5; $i++) {
+                        if($row['avg_rating'] >= $i) {
+                            echo '<i class="fa fa-star checked"></i>';
+                        } else {
+                            echo '<i class="fa fa-star"></i>';
+                        }
+                    }
+                    echo '</span>';
+                    echo '<span> <i class="fa fa-heart"></i></span>';
+                    echo '</div>';
+                    echo '<h5 class="card-title">' . htmlspecialchars($row['title']) . '</h5>';
+                    echo '<p class="card-text truncated-text">'. $row['overview'] .'</p>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                }
+            } else {
+                echo "<div>No data found</div>";
+            }
+            ?>
+        </div>
+    </div>
+</div>
 <!--Footer-->
 <div class="footer">
     <div class="container">
