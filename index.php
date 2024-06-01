@@ -1,3 +1,21 @@
+<?php
+require 'db.php';
+
+$query_top = "SELECT m.movie_id, m.title, m.overview, m.movie_image, AVG(r.rating) AS avg_rating
+              FROM movie m
+              LEFT JOIN rating r on r.movie_id = m.movie_id
+              GROUP BY m.movie_id, m.title, m.overview, m.movie_image
+              ORDER BY avg_rating DESC
+              LIMIT 4;";
+
+$stmt = $db->prepare($query_top);
+$stmt->execute();
+$topMovies = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    if (!$topMovies) {
+        echo "Error";
+    }
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -18,7 +36,7 @@
 <nav class="navbar navbar-expand-lg header">
     <div class="container">
         <a class="navbar-brand" href="./index.html">
-            <img src="./assets/Logo/FilmVaultNew-removebg-preview.png" alt="Logo" width="70" height="55" class="d-inline-block align-text-top">
+            <img src="./assets/Logo/FilmVault_purple2-removebg-preview.png" alt="Logo" width="70" height="55" class="d-inline-block align-text-top">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -33,13 +51,13 @@
             </form>
         </div>
         <ul class="navbar-nav flex-row">
-            <li class="nav-item border-purple rounded-circle mx-1 px-1">
+            <li class="nav-item border border-white rounded-circle mx-1 px-1">
                 <a class="nav-link text-light" href="/index.html"><i class="fa fa-heart"></i></a>
             </li>
-            <li class="nav-item border-purple rounded-circle mx-1 px-1">
+            <li class="nav-item border border-white rounded-circle mx-1 px-1">
                 <a class="nav-link text-light" href="/index.html"><i class="fa fa-bell"></i></a>
             </li>
-            <li class="nav-item border-purple rounded-circle mx-1 px-1">
+            <li class="nav-item border border-white rounded-circle mx-1 px-1">
                 <a class="nav-link text-light" href="/index.html"><i class="fa fa-user"></i></a>
             </li>
         </ul>
@@ -109,94 +127,35 @@
         </div>
         <!--Card-->
         <div class="row col-sm-6 col-md-8 col-lg-10 g-3">
-            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                <div class="card">
-                    <img src="./assets/MoviePoster/AvengersEndgame2.jpeg" class="card-img-top" alt="logo">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <span>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star"></i>
-                        </span>
-                        <span>
-                            <i class="fa fa-heart heart"></i>
-                        </span>
-                        </div>
-
-                        <h5 class="card-title">Avenger Endgame</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                <div class="card">
-                    <img src="./assets/MoviePoster/AvengersEndgame2.jpeg" class="card-img-top" alt="logo">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <span>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star"></i>
-                        </span>
-                            <span>
-                            <i class="fa fa-heart heart"></i>
-                        </span>
-                        </div>
-
-                        <h5 class="card-title">Avenger Endgame</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                <div class="card">
-                    <img src="./assets/MoviePoster/AvengersEndgame2.jpeg" class="card-img-top" alt="logo">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <span>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star"></i>
-                        </span>
-                            <span>
-                            <i class="fa fa-heart heart"></i>
-                        </span>
-                        </div>
-
-                        <h5 class="card-title">Avenger Endgame</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                <div class="card">
-                    <img src="./assets/MoviePoster/AvengersEndgame2.jpeg" class="card-img-top" alt="logo">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <span>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star"></i>
-                        </span>
-                            <span>
-                            <i class="fa fa-heart heart"></i>
-                        </span>
-                        </div>
-
-                        <h5 class="card-title">Avenger Endgame</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-            </div>
+        <?php
+            if (count($topMovies) > 0) {
+                foreach ($topMovies as $row) {
+                    echo '<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">';
+                    echo '<div class="card">';
+                    echo '<img src="' . htmlspecialchars($row['movie_image']) . '" class="card-img-top" alt="' . htmlspecialchars($row['title']) . '">';
+                    echo '<div class="card-body">';
+                    echo '<div class="d-flex justify-content-between">';
+                    echo '<span>';
+                    for ($i = 1; $i <= 5; $i++) {
+                        if($row['avg_rating'] >= $i) {
+                            echo '<i class="fa fa-star checked"></i>';
+                        } else {
+                            echo '<i class="fa fa-star"></i>';
+                        }
+                    }
+                    echo '</span>';
+                    echo '<span> <i class="fa fa-heart"></i></span>';
+                    echo '</div>';
+                    echo '<h5 class="card-title">' . htmlspecialchars($row['title']) . '</h5>';
+                    echo '<p class="card-text text-truncate">'. $row['overview'] .'</p>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                }
+            } else {
+                echo "<div>No data found</div>";
+            }
+            ?>
         </div>
     </div>
 </div>

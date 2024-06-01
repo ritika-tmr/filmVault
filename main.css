@@ -1,6 +1,6 @@
 
 body {
-   background-color: #042A45 !important;
+   background-color: #1D133C !important;
    color: white !important;
    font-family: "Playfair Display", serif;
    font-optical-sizing: auto;
@@ -25,10 +25,6 @@ body {
    color: white;
 }
 
-.card-base {
-   background-color: #86A8CF;
-   color: white;
-}
 .footer {
    background-color: #010B11;
    color: #86A8CF;
@@ -37,11 +33,13 @@ body {
    color: #F6AE2D;
 }
 .card {
-   background-color: #032034 !important;
+   background-color: #010B11 !important;
    color: white !important;
    cursor: pointer;
 }
-
+.border-purple {
+   border: 1px solid #9173E5;
+}
 .heart {
    color: #D11AEF;
 }
