@@ -249,7 +249,7 @@ if (!$comedyMovies) {
         </div>
     </div>
 </div>
-
+<!--Category action movie lists-->
 <div class="container py-3 my-3">
     <div class="row g-5">
         <div class="col-sm-6 col-md-4 col-lg-2">
@@ -292,7 +292,7 @@ if (!$comedyMovies) {
         </div>
     </div>
 </div>
-
+<!--Category comedy movie lists-->
 <div class="container py-3 my-3">
     <div class="row g-5">
         <div class="col-sm-6 col-md-4 col-lg-2">
