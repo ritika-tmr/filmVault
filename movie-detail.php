@@ -1,3 +1,75 @@
+<?php
+include 'db.php';
+
+// Get movie_id from query parameter
+$movie_id = isset($_GET['movie_id']) ? intval($_GET['movie_id']) : 0;
+
+if ($movie_id == 0) {
+    die("Invalid movie ID.");
+}
+
+try {
+    // Fetch movie details
+    $stmt = $db->prepare("SELECT * FROM Movie WHERE movie_id = :movie_id");
+    $stmt->execute(['movie_id' => $movie_id]);
+    $movie = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$movie) {
+        die("Movie not found.");
+    }
+
+    // Fetch genres
+    $stmt = $db->prepare("SELECT g.genre_name FROM Genre g
+                          JOIN Movie_Genre mg ON g.genre_id = mg.genre_id
+                          WHERE mg.movie_id = :movie_id");
+    $stmt->execute(['movie_id' => $movie_id]);
+    $genres = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+    // Fetch languages
+    $stmt = $db->prepare("SELECT l.language_name FROM Language l
+                          JOIN Movie_Language ml ON l.language_id = ml.language_id
+                          WHERE ml.movie_id = :movie_id");
+    $stmt->execute(['movie_id' => $movie_id]);
+    $languages = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+    // Fetch directors
+    $stmt = $db->prepare("SELECT d.director_name FROM Director d
+                          JOIN Movie_Director md ON d.director_id = md.director_id
+                          WHERE md.movie_id = :movie_id");
+    $stmt->execute(['movie_id' => $movie_id]);
+    $directors = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+     // Fetch cast
+     $stmt = $db->prepare("SELECT p.person_name, mc.character_name FROM Person p
+     JOIN Movie_Cast mc ON p.person_id = mc.person_id
+     WHERE mc.movie_id = :movie_id");
+    $stmt->execute(['movie_id' => $movie_id]);
+    $cast = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Fetch production countries
+    $stmt = $db->prepare("SELECT c.country_name FROM Country c
+                          JOIN Production_Country pc ON c.country_id = pc.country_id
+                          WHERE pc.movie_id = :movie_id");
+    $stmt->execute(['movie_id' => $movie_id]);
+    $countries = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+    // Fetch ratings
+    $stmt = $db->prepare("SELECT AVG(rating) AS avg_rating FROM Rating WHERE movie_id = :movie_id");
+    $stmt->execute(['movie_id' => $movie_id]);
+    // Fetch the average rating from the result set
+    $ratingRow = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    //Fetch trailer
+    $stmt = $db->prepare("SELECT trailer FROM Movie WHERE movie_id = :movie_id");
+    $stmt->execute(['movie_id' => $movie_id]);
+    $trailerRow = $stmt->fetch(PDO::FETCH_ASSOC);
+
+} catch (PDOException $e) {
+    die('Query failed: ' . $e->getMessage());
+}
+
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -46,31 +118,87 @@
   </div>
 </nav>
 
-<div class="container col-xl-10 col-xxl-8 px-4 py-5">
-    <div class="col-md-10 mx-auto col-lg-5">
-      <form class="p-4 p-md-5 login-card shadow rounded-0" action="save_rating.php" method="post">
-        <div class="form-floating mb-3">
-          <div class="form-floating">
-            <select class="form-select" aria-label=" select rating" name="rating">
-              <option selected disabled>Select a rating</option>
-              <option value="1">1 Star</option>
-              <option value="2">2 Stars</option>
-              <option value="3">3 Stars</option>
-              <option value="4">4 Stars</option>
-              <option value="5">5 Stars</option>
-            </select>
-            <label>Rating</label>
-          </div>
+<!--Title-->
+<div class="container mt-3">
+    <h2><?php echo $movie['title']; ?></h2>
+    <div class="d-flex justify-content-between">
+        <div>
+            <span><?php echo $movie['release_date']; ?> ‧ </span><span><?php echo implode(', ', $genres); ?> ‧ </span><span><?php echo $movie['runtime']; ?></span>
         </div>
-        <div class="form-floating mb-3">
-          <label for="exampleFormControlTextarea1" class="form-label">Review</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" name="review" rows="10"></textarea>
+        <div>
+            <span>
+              <?php
+              for ($i = 1; $i <= 5; $i++) {
+                  if($row['avg_rating'] >= $i) {
+                      echo '<i class="fa fa-star checked"></i>';
+                  } else {
+                      echo '<i class="fa fa-star"></i>';
+                  }
+              }
+              ?>
+            </span>
         </div>
-        <button class="w-100 btn btn-lg rounded-0" type="submit">Submit</button>
-        <hr class="my-4">
-        <p class="fw-light">Choose another movie <a href="/index.html">Click here</a> </p>
-      </form>
     </div>
+
+</div>
+<!-- Check if a trailer link is found -->
+<div class="container">
+    <div class="ratio ratio-16x9">
+        <?php
+        // Check if a trailer link is found
+        if ($trailerRow) {
+            // Access the trailer link
+            $trailerLink = $trailerRow['trailer'];
+
+            // Embed the trailer link in an iframe
+            echo '<iframe src="' . $trailerLink . '" title="YouTube video" allowfullscreen></iframe>';
+        } else {
+            // If no trailer link is found, display a message
+            echo '<p>No trailer available for this movie.</p>';
+        }
+        ?>
+    </div>
+</div>
+<!--Poster-->
+  <div class="col-md-4">
+    <img src="<?php echo htmlspecialchars($movie['movie_image']); ?>" class="img-fluid" alt="Movie Image">
+  </div>
+<!--Description-->
+
+<div class="container mt-3">
+    <div class="row g-3">
+        <div class="col-8">
+            <h5>Description</h5>
+            <p><?php echo $movie['overview']; ?></p>
+            <hr class="my-4">
+            <h5>Director</h5>
+            <p>
+                <?php echo implode(', ', $directors); ?>
+            </p>
+            <hr class="my-4">
+            <h5>Cast</h5>
+            <p>
+            <ul>
+              <?php foreach ($cast as $member): ?>
+                <li><?php echo $member['person_name'] . ' as ' . $member['character_name']; ?></li>
+              <?php endforeach; ?>
+            </ul>
+
+            </p>
+            <hr class="my-4">
+            <h5>Language</h5>
+            <p><?php echo implode(', ', $languages); ?>
+            </p>
+            <hr class="my-4">
+            <h5>Country</h5>
+            <p><?php echo implode(', ', $countries); ?></p>
+            <hr class="my-4">
+        </div>
+        <div class="col-4">
+            <button class="btn">Add To WatchList <i class="fa fa-heart"></i></button>
+        </div>
+    </div>
+
 </div>
 <!--Footer-->
 <div class="footer">

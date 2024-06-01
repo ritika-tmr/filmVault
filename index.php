@@ -178,7 +178,7 @@ if (!$comedyMovies) {
             if (count($topMovies) > 0) {
                 foreach ($topMovies as $row) {
                     echo '<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">';
-                    echo '<div class="card">';
+                    echo '<div class="card" onclick="redirectToMovieDetail(' . htmlspecialchars($row['movie_id']) . ')">';
                     echo '<img src="' . htmlspecialchars($row['movie_image']) . '" class="card-img-top" alt="' . htmlspecialchars($row['title']) . '">';
                     echo '<div class="card-body">';
                     echo '<div class="d-flex justify-content-between">';
@@ -221,7 +221,7 @@ if (!$comedyMovies) {
             if (count($romanceMovies) > 0) {
                 foreach ($romanceMovies as $row) {
                     echo '<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">';
-                    echo '<div class="card">';
+                    echo '<div class="card" onclick="redirectToMovieDetail(' . htmlspecialchars($row['movie_id']) . ')">';
                     echo '<img src="' . htmlspecialchars($row['movie_image']) . '" class="card-img-top" alt="' . htmlspecialchars($row['title']) . '">';
                     echo '<div class="card-body">';
                     echo '<div class="d-flex justify-content-between">';
@@ -264,7 +264,7 @@ if (!$comedyMovies) {
             if (count($actionMovies) > 0) {
                 foreach ($actionMovies as $row) {
                     echo '<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">';
-                    echo '<div class="card">';
+                    echo '<div class="card" onclick="redirectToMovieDetail(' . htmlspecialchars($row['movie_id']) . ')">';
                     echo '<img src="' . htmlspecialchars($row['movie_image']) . '" class="card-img-top" alt="' . htmlspecialchars($row['title']) . '">';
                     echo '<div class="card-body">';
                     echo '<div class="d-flex justify-content-between">';
@@ -307,7 +307,7 @@ if (!$comedyMovies) {
             if (count($comedyMovies) > 0) {
                 foreach ($comedyMovies as $row) {
                     echo '<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">';
-                    echo '<div id="'. $row['movie_id']. '" class="card">';
+                    echo '<div class="card" onclick="redirectToMovieDetail(' . htmlspecialchars($row['movie_id']) . ')">';
                     echo '<img src="' . htmlspecialchars($row['movie_image']) . '" class="card-img-top" alt="' . htmlspecialchars($row['title']) . '">';
                     echo '<div class="card-body">';
                     echo '<div class="d-flex justify-content-between">';
@@ -335,6 +335,13 @@ if (!$comedyMovies) {
         </div>
     </div>
 </div>
+
+<script>
+function redirectToMovieDetail(movie_id) {
+    window.location.href = 'movie-detail.php?movie_id=' + movie_id;
+}
+</script>
+
 <!--Footer-->
 <div class="footer">
     <div class="container">
