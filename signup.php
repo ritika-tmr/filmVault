@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $stmt = $db->prepare('INSERT INTO Users (username, user_email, user_pwd) VALUES (?, ?, ?)');
                 if ($stmt->execute([$username, $email, $passwordHash])) {
                     $userId = $db->lastInsertId();
-                    $success = "Signup successful! Your user ID is $userId. You can now <a href='login.php'>login</a>.";
+                    $success = "<script>alert('Signup successful! You can now login.'); window.location = 'login.php';</script>";
                 } else {
                     $error = 'Error: Could not sign up.';
                 }
@@ -96,5 +96,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
   </div>
 </div>
+<!-- Add this div at the end of your body -->
+<div id="signupSuccessPopup" class="modal fade" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Success!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Signup successful! You can now <a href="login.php">login</a>.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>

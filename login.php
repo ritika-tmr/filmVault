@@ -10,10 +10,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user = $stmt->fetch();
 
     if ($user && password_verify($password, $user['user_pwd'])) {
-        echo "Login successful!";
+        // Start the session (if not already started)
+        session_start();
+    
+        // Store user data in session for later use
+        $_SESSION['user_id'] = $user['user_id'];
+        $_SESSION['username'] = $user['username'];
+    
+        // Redirect the user to index.html
+        header("Location: index.html");
+        exit(); // Make sure to exit to prevent further execution
     } else {
         echo "Invalid email or password.";
     }
+    
 }
 ?>
 
