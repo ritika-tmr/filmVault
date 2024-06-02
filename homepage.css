@@ -20,6 +20,11 @@ body {
     color: white;
 }
 
+.dropdown-menu {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .base-color {
     background-color: #042A45;
     color: white;

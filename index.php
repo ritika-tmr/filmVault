@@ -72,8 +72,12 @@ if (!$comedyMovies) {
     <link rel="stylesheet" href="homepage.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
 <!--Header-->
@@ -98,16 +102,21 @@ if (!$comedyMovies) {
             <li class="nav-item border border-white rounded-circle mx-1 px-1">
                 <a class="nav-link text-light" href="./watchlist.php"><i class="fa fa-heart"></i></a>
             </li>
-            <li class="nav-item border border-white rounded-circle mx-1 px-1">
-                <a class="nav-link text-light" href="./index.php"><i class="fa fa-user"></i></a>
+
+            <li class="nav-item dropdown border border-white rounded-circle mx-1 px-1">
+                <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-user"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" id="reviewedMoviesLink" href="./reviewed.php">Reviewed Movies</a>
+                    <div class="dropdown-divider" id="divider"></div>
+                    <a class="dropdown-item" id="loginLogoutLink" href="#"></a>
+                </div>
             </li>
         </ul>
-
-
-
-
     </div>
 </nav>
+
 <!-- Carousel -->
 <div id="demo" class="container carousel slide py-3 my-3" data-bs-ride="carousel">
 
@@ -387,6 +396,24 @@ function redirectToMovieDetail(movie_id) {
         </footer>
     </div>
 </div>
+<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const loginLogoutLink = document.getElementById('loginLogoutLink');
+            const reviewedMoviesLink = document.getElementById('reviewedMoviesLink');
+            const divider = document.getElementById('divider');
+            const userData = localStorage.getItem('userData');
+
+            if (userData) {
+                loginLogoutLink.textContent = 'Logout';
+                loginLogoutLink.href = './logout.html';
+            } else {
+                loginLogoutLink.textContent = 'Login';
+                loginLogoutLink.href = './login.php';
+                reviewedMoviesLink.style.display = 'none';
+                divider.style.display = 'none';
+            }
+        });
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
