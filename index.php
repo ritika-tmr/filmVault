@@ -99,13 +99,10 @@ if (!$comedyMovies) {
         </div>
         <ul class="navbar-nav flex-row">
             <li class="nav-item border border-white rounded-circle mx-1 px-1">
-                <a class="nav-link text-light" href="/index.html"><i class="fa fa-heart"></i></a>
+                <a class="nav-link text-light" href="/watchlist.php"><i class="fa fa-heart"></i></a>
             </li>
             <li class="nav-item border border-white rounded-circle mx-1 px-1">
-                <a class="nav-link text-light" href="/index.html"><i class="fa fa-bell"></i></a>
-            </li>
-            <li class="nav-item border border-white rounded-circle mx-1 px-1">
-                <a class="nav-link text-light" href="/index.html"><i class="fa fa-user"></i></a>
+                <a class="nav-link text-light" href="/index.php"><i class="fa fa-user"></i></a>
             </li>
         </ul>
 

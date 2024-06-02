@@ -167,6 +167,7 @@ $genre = $stmt4->fetchAll(PDO::FETCH_ASSOC);
                             echo '<i class="fa fa-star"></i>';
                         }
                     }
+                    echo '</span>';
                     echo '<p class="card-text truncated-text">'. $row['overview'] .'</p>';
                     echo '</div>';
                     echo '</div>';

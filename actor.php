@@ -21,12 +21,12 @@ try {
 
 
     // Fetch movie cast
-    $stmt = $db->prepare("SELECT m.title, mc.character_name, m.movie_image
+    $stmt = $db->prepare("SELECT m.title, mc.character_name, m.movie_image, m.movie_id
                                 FROM movie m
                                 INNER JOIN movie_cast mc ON m.movie_id = mc.movie_id
                                 WHERE mc.person_id = :person_id;");
     $stmt->execute(['person_id' => $person_id]);
-    $cast = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $movieList = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 } catch (PDOException $e) {
@@ -92,6 +92,7 @@ try {
                 <!--Poster-->
                 <div class="my-3">
                     <img src="<?php echo htmlspecialchars($person['person_image']); ?>" class="img-fluid" alt="<?php echo htmlspecialchars($person['person_name']); ?>">
+                    <h2><?php echo $person['person_name']; ?></h2>
                 </div>
             </div>
             <div class="col-9">
@@ -100,46 +101,40 @@ try {
                 <hr class="my-4">
                 <h5>Gender</h5>
                 <p>
-                    <?php echo implode(', ', $person['gender']); ?>
+                    <?php echo  $person['gender']; ?>
                 </p>
                 <hr class="my-4">
                 <!--User Reviews-->
-                <h5>User Reviews </h5>
-                <div class="review-list p-3">
-<!--                    --><?php
-//                    if (count($allRating) > 0) {
-//                        foreach ($allRating as $row) {
-//                            echo '<div class="review-card p-3 my-3">';
-//                            echo ' <div class="d-flex justify-content-between">';
-//                            echo '<h6>' . $row['username'] . '</h6> ';
-//                            echo ' <div class="d-flex flex-column">';
-//                            echo ' <span>';
-//                            echo '<span>' . $row['rating'] . ' - </span> ';
-//                            for ($i = 1; $i <= 5; $i++) {
-//                                if ($row >= $i) {
-//                                    echo '<i class="fa fa-star checked"></i>';
-//                                } else {
-//                                    echo '<i class="fa fa-star"></i>';
-//                                }
-//                            };
-//                            echo '</span>';
-//                            echo ' <small>'. date("jS F Y", strtotime($row['rating_date'])) .'</small>';
-//                            echo '</div> ';
-//                            echo ' </div>';;
-//                            echo ' <p class="lead">';
-//                            echo $row['review'];
-//                            echo ' </p>';
-//                            echo '</div>';
-//                        }
-//                    }
-//                    ?>
+                <h5>Known For </h5>
+                <div class="my-3">
+                    <?php
+                    if (count($movieList) > 0) {
+                        foreach ($movieList as $row) {
+                            echo '<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">';
+                            echo '<div class="card" onclick="redirectToMovieDetail(' . htmlspecialchars($row['movie_id']) . ')">';
+                            echo '<img src="' . htmlspecialchars($row['movie_image']) . '" class="card-img-top" alt="' . htmlspecialchars($row['title']) . '">';
+                            echo '<div class="card-body">';
+                            echo '<h5 class="card-title">' . htmlspecialchars($row['title']) . '</h5>';
+                            echo '<p class="card-text truncated-text">'. $row['character_name'] .'</p>';
+                            echo '</div>';
+                            echo '</div>';
+                            echo '</div>';
+                        }
+                    } else {
+                        echo "<div>No data found</div>";
+                    }
+                    ?>
                 </div>
             </div>
         </div>
 
     </div>
 
-
+    <script>
+        function redirectToMovieDetail(movie_id) {
+            window.location.href = 'movie-detail.php?movie_id=' + movie_id;
+        }
+    </script>
 
     <!--Footer-->
     <div class="footer">
