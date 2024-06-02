@@ -57,6 +57,19 @@ body {
 .yellow-button {
     background: #F6AE2D !important;
 }
-.review-list {
+.review-list .review-card {
     background: #010B11;
+}
+.dot {
+    height: .5rem;
+    width: .5rem;
+    background-color: #9173E5;
+    border-radius: 50%;
+    display: inline-block;
+}
+.person-name {
+    cursor: pointer;
+}
+.person-name:hover {
+    color: #9173E5;
 }

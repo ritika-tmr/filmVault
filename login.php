@@ -10,16 +10,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user = $stmt->fetch();
 
     if ($user && password_verify($password, $user['user_pwd'])) {
-        // Start the session (if not already started)
-        session_start();
-    
-        // Store user data in session for later use
-        $_SESSION['user_id'] = $user['user_id'];
-        $_SESSION['username'] = $user['username'];
-    
-        // Redirect the user to index.html
-        header("Location: index.html");
-        exit(); // Make sure to exit to prevent further execution
+        $userData = json_encode([
+            'user_id' => $user['user_id'],
+            'username' => $user['username']
+        ]);
+
+        // Set user data in localStorage using JavaScript
+        echo "<script>";
+        echo "localStorage.setItem('userData', '$userData');";
+        echo "window.location.href = 'index.php';";
+        echo "</script>";
     } else {
         echo "Invalid email or password.";
     }
@@ -74,8 +74,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <div class="container col-xl-10 col-xxl-8 px-4 py-5">
   <div class="row align-items-center g-lg-5 py-5">
     <div class="col-lg-7 text-center text-lg-start">
-      <h1 class="display-4 fw-bold lh-1 mb-3">Login to FilmVault</h1>
-      <p class="col-lg-10 fs-4">Access your account and explore the world of cinema!</p>
+      <h1 class="display-4 fw-bold lh-1 mb-3">Login</h1>
+      <p class="col-lg-10 fs-4">Log in to FilmVault to enjoy creating your favorites list, write and share reviews, and engage with our vibrant community of film enthusiasts. Join us now for an enhanced movie-watching experience!!</p>
     </div>
     <div class="col-md-10 mx-auto col-lg-5">
       <form method="POST" class="p-4 p-md-5 login-card shadow">

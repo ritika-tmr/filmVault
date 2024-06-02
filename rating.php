@@ -21,26 +21,7 @@ try {
 } catch (PDOException $e) {
     die('Query failed: ' . $e->getMessage());
 }
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $rating = $_POST['rating'];
-    $review = $_POST['review'];
 
-    if ($rating && $review) {
-
-        try {
-            $stmt = $db->prepare('INSERT INTO Rating (movie_id,rating, review) VALUES (?, ?, ?)');
-            if ($stmt -> execute([$movie_id, $rating, $review])){
-                $success = "<script>alert('Rating successful!'); window.location = 'index.php';</script>";
-            } else {
-                $error = 'Error: Could add review.';
-            }
-        } catch (Exception $e) {
-            $error = 'Error Uploading' . $e->getMessage();
-        }
-    } else {
-        $error = "Invalid Rating or Review";
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -85,7 +66,42 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </ul>
     </div>
 </nav>
+<!--Javascript function to post -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#submitBtn').click(function() {
+            // Get data from input fields
+            let userId = JSON.parse(localStorage.getItem('userData')).user_id;
+            let rating = $('#rating').val();
+            let review = $('#review').val();
+            let movieId = $('#movie_id').val();
+            // Send data to server using AJAX
+            $.ajax({
+                type: 'POST',
+                url: 'postrating.php',
+                data: {
+                    user_id: userId,
+                    rating: rating,
+                    review: review,
+                    movie_id: movieId,
+                },
+                success: function(response) {
+                    // Handle response
+                    console.log("success data", response);
+                    if (response) {
+                        alert(response);
+                        window.location.href = 'movie-detail.php?movie_id='+ movieId;
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr, status, error);
+                }
+            });
 
+        });
+    });
+</script>
 <!-- Rate -->
 <div class="container col-xl-10 col-xxl-8 px-4 py-5">
     <div class="row align-items-center">
@@ -95,20 +111,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="col-md-8">
             <div class="card-body">
                 <h5 class="display-4 fw-bold lh-1 mb-3">Review <?php echo $movie['title']; ?> </h5>
-                <?php if (!empty($error)): ?>
-                    <div class="alert alert-danger" role="alert">
-                        <?php echo $error; ?>
-                    </div>
-                <?php endif; ?>
-                <?php if (!empty($success)): ?>
-                    <div class="alert alert-success" role="alert">
-                        <?php echo $success; ?>
-                    </div>
-                <?php endif; ?>
-                <form method="POST" class="p-4 p-md-5 rounded-0">
+
+                <div class="p-4 p-md-5 rounded-0">
+                    <input type="hidden" id="movie_id"  value="<?php echo $movie['movie_id']; ?>">
                 <div class="card-text mb-3">
                     <label>Rating</label>
-                    <select class="form-select" aria-label=" select rating" name="rating" required>
+                    <select class="form-select" aria-label=" select rating" id="rating" required>
                         <option selected disabled>Select a rating</option>
                         <option value="1">1 Star</option>
                         <option value="2">2 Stars</option>
@@ -116,14 +124,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <option value="4">4 Stars</option>
                         <option value="5">5 Stars</option>
                     </select>
-
                 </div>
                 <div class="card-text mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Review</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" required name="review" placeholder="Write your review" rows="10"></textarea>
+                    <label for="review" class="form-label">Review</label>
+                    <textarea class="form-control" id="review"  placeholder="Write your review" rows="10"></textarea>
                 </div>
-                <button class="w-100 btn btn-lg btn-secondary purple-button" type="submit">Submit</button>
-            </form>
+                <button class="w-100 btn btn-lg btn-secondary purple-button" id="submitBtn">Submit</button>
+            </div>
             </div>
         </div>
     </div>

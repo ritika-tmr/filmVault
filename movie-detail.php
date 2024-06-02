@@ -40,7 +40,7 @@ try {
     $directors = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
      // Fetch cast
-     $stmt = $db->prepare("SELECT p.person_name, mc.character_name FROM Person p
+     $stmt = $db->prepare("SELECT p.person_name, mc.character_name, p.person_id FROM Person p
      JOIN Movie_Cast mc ON p.person_id = mc.person_id
      WHERE mc.movie_id = :movie_id");
     $stmt->execute(['movie_id' => $movie_id]);
@@ -53,7 +53,7 @@ try {
     $stmt->execute(['movie_id' => $movie_id]);
     $countries = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
-    // Fetch ratings
+    // Fetch Average ratings
     $stmt = $db->prepare("SELECT AVG(rating) AS avg_rating FROM Rating WHERE movie_id = :movie_id");
     $stmt->execute(['movie_id' => $movie_id]);
     // Fetch the average rating from the result set
@@ -63,6 +63,15 @@ try {
     $stmt = $db->prepare("SELECT trailer FROM Movie WHERE movie_id = :movie_id");
     $stmt->execute(['movie_id' => $movie_id]);
     $trailerRow = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // Fetch All ratings
+    $stmt = $db->prepare("SELECT rating, review, rating_date, u.username 
+                        FROM Rating r 
+                        INNER JOIN users u ON u.user_id = r.user_id 
+                        WHERE movie_id = :movie_id");
+    $stmt->execute(['movie_id' => $movie_id]);
+    $allRating = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 
 } catch (PDOException $e) {
     die('Query failed: ' . $e->getMessage());
@@ -76,7 +85,7 @@ try {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>FilmVault</title>
-  <link rel="stylesheet" href="movie.css">
+  <link rel="stylesheet" href="extra.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -184,13 +193,13 @@ try {
                 <?php echo implode(', ', $directors); ?>
             </p>
             <hr class="my-4">
-            <h5>Cast</h5>
+            <h5>Top Cast</h5>
             <p>
-            <ul>
                 <?php foreach ($cast as $member): ?>
-                    <li><?php echo $member['person_name'] . ' as ' . $member['character_name']; ?></li>
+                    <u class="person-name"  onclick="redirectToActorDetail(<?php echo $member['person_id']  ?>)"><?php echo $member['person_name']  ?></u>
+                    <span> as <?php echo $member['character_name'] ;  ?></span>
+                    <span class="dot"></span>
                 <?php endforeach; ?>
-            </ul>
 
             </p>
             <hr class="my-4">
@@ -201,10 +210,44 @@ try {
             <h5>Country</h5>
             <p><?php echo implode(', ', $countries); ?></p>
             <hr class="my-4">
+<!--User Reviews-->
+            <h5>User Reviews </h5>
+            <div class="review-list p-3">
+                <?php
+                if (count($allRating) > 0) {
+                    foreach ($allRating as $row) {
+                        echo '<div class="review-card p-3 my-3">';
+                        echo ' <div class="d-flex justify-content-between">';
+                        echo '<h6>' . $row['username'] . '</h6> ';
+                        echo ' <div class="d-flex flex-column">';
+                        echo ' <span>';
+                        echo '<span>' . $row['rating'] . ' - </span> ';
+                        for ($i = 1; $i <= 5; $i++) {
+                            if ($row >= $i) {
+                                echo '<i class="fa fa-star checked"></i>';
+                            } else {
+                                echo '<i class="fa fa-star"></i>';
+                            }
+                        };
+                        echo '</span>';
+                        echo ' <small>'. date("jS F Y", strtotime($row['rating_date'])) .'</small>';
+                        echo '</div> ';
+                        echo ' </div>';;
+                        echo ' <p class="lead">';
+                        echo $row['review'];
+                        echo ' </p>';
+                        echo '</div>';
+                    }
+                }
+                ?>
+            </div>
         </div>
     </div>
 
 </div>
+
+
+
 <!--Footer-->
 <div class="footer">
   <div class="container">
@@ -258,7 +301,14 @@ try {
 </div>
 <script>
     function redirectToRating(movie_id) {
-        window.location.href = 'rating.php?movie_id=' + movie_id;
+        if (localStorage.getItem('userData')) {
+            window.location.href = 'rating.php?movie_id=' + movie_id;
+        } else {
+            window.location.href = 'login.php';
+        }
+    }
+    function redirectToActorDetail(person_id) {
+        window.location.href = 'actor.php?person_id=' + person_id;
     }
 </script>
 
