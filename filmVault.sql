@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 01, 2024 at 11:44 AM
+-- Generation Time: Jun 02, 2024 at 04:21 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -504,8 +504,36 @@ CREATE TABLE `Rating` (
   `rating_id` int(11) NOT NULL,
   `movie_id` int(11) DEFAULT NULL,
   `rating` int(11) DEFAULT NULL CHECK (`rating` between 1 and 5),
-  `review` varchar(3000) DEFAULT NULL
+  `review` varchar(3000) DEFAULT NULL,
+  `rating_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `Rating`
+--
+
+INSERT INTO `Rating` (`rating_id`, `movie_id`, `rating`, `review`, `rating_date`, `user_id`) VALUES
+(1, 101, 5, 'Excellent product!', '2024-06-02 01:45:43', 802),
+(2, 102, 4, 'Good movie.', '2024-06-02 01:48:02', 803),
+(3, 103, 4, 'Meaningful and funny.', '2024-06-02 02:01:05', 804),
+(4, 104, 5, 'Love it', '2024-06-02 02:01:05', 804),
+(5, 105, 4, 'Amazing and Scary', '2024-06-02 02:01:05', 802),
+(6, 106, 4, 'Meaningful and funny.', '2024-06-02 02:01:05', 804),
+(7, 107, 3, 'Good and illustrate the reality but somehow so sad.', '2024-06-02 02:01:05', 805),
+(8, 108, 4, 'So cute.', '2024-06-02 02:01:05', 802),
+(9, 109, 5, 'My childhood movie', '2024-06-02 02:01:05', 802),
+(10, 110, 5, 'Amazing', '2024-06-02 02:01:05', 805),
+(11, 111, 3, 'Fun', '2024-06-02 02:01:05', 804),
+(12, 112, 4, 'Such a beautiful sound of music', '2024-06-02 02:01:05', 803),
+(13, 113, 4, 'A deeply loving film rich in character', '2024-06-02 02:01:05', 804),
+(14, 114, 3, 'Interesting!', '2024-06-02 02:01:05', 802),
+(15, 115, 5, 'An artistic triumph!', '2024-06-02 02:01:05', 803),
+(16, 116, 5, 'A Touching and Meaningful Story.', '2024-06-02 02:01:05', 805),
+(17, 117, 5, 'Such a meaningful and artistic work!', '2024-06-02 02:01:05', 805),
+(18, 118, 3, 'Nice', '2024-06-02 02:01:05', 802),
+(19, 119, 4, 'For the music and romance lovers.', '2024-06-02 02:01:05', 803),
+(20, 120, 3, 'Good movie but abit overrated', '2024-06-02 02:02:15', 803);
 
 -- --------------------------------------------------------
 
@@ -542,7 +570,8 @@ CREATE TABLE `Watchlist` (
   `watchlist_id` int(11) DEFAULT NULL,
   `movie_id` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `watchlist_name` varchar(255) DEFAULT NULL
+  `watchlist_name` varchar(255) DEFAULT NULL,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -626,7 +655,8 @@ ALTER TABLE `Production_Country`
 --
 ALTER TABLE `Rating`
   ADD PRIMARY KEY (`rating_id`),
-  ADD KEY `movie_id` (`movie_id`);
+  ADD KEY `movie_id` (`movie_id`),
+  ADD KEY `fk_user` (`user_id`);
 
 --
 -- Indexes for table `Users`
@@ -649,7 +679,7 @@ ALTER TABLE `Watchlist`
 -- AUTO_INCREMENT for table `Rating`
 --
 ALTER TABLE `Rating`
-  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `Users`
@@ -700,6 +730,7 @@ ALTER TABLE `Production_Country`
 -- Constraints for table `Rating`
 --
 ALTER TABLE `Rating`
+  ADD CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `Users` (`user_id`),
   ADD CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`movie_id`) REFERENCES `Movie` (`movie_id`);
 
 --
