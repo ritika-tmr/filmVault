@@ -79,7 +79,7 @@ try {
             // Send data to server using AJAX
             $.ajax({
                 type: 'POST',
-                url: 'postrating.php',
+                url: 'addRating.php',
                 data: {
                     user_id: userId,
                     rating: rating,

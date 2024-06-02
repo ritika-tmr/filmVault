@@ -132,17 +132,11 @@
 
 <!--Category Lists-->
 <div class="container py-3 my-3">
+    <h2>Your Favourite Movie List</h2>
         <div class="row g-3" id="fav-list">
 
     </div>
 </div>
-<script>
-    $(document).ready(function(){
-        $('select').change(function(){
-            $('form').submit();
-        });
-    });
-</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

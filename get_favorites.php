@@ -2,11 +2,12 @@
 require 'db.php'; // Your database connection file
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $query_movie = "SELECT m.title, m.movie_image, m.movie_id, m.overview, AVG(r.rating) AS avg_rating
+    $query_movie = "SELECT m.title,  m.movie_image, m.movie_id,m.overview,COALESCE(AVG(r.rating), 0) AS avg_rating
                     FROM movie m
+                    LEFT JOIN watchlist w ON m.movie_id = w.movie_id
                     LEFT JOIN rating r ON r.movie_id = m.movie_id
-                    INNER JOIN watchlist w ON m.movie_id = w.movie_id
-                    WHERE w.user_id = :user_id";
+                    WHERE  w.user_id = :user_id
+                    GROUP BY m.movie_id, m.title, m.movie_image, m.overview";
     $user_id = $_POST['user_id'];
 
     if ($user_id) {

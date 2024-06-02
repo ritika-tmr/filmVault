@@ -90,9 +90,6 @@ try {
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 </head>
 <body>
 <!--Header-->
@@ -128,11 +125,13 @@ try {
 </nav>
 
 <!--Title-->
-<div class="container mt-3">
+<div class="container my-3">
     <h2><?php echo $movie['title']; ?></h2>
     <div class="d-flex justify-content-between">
         <div>
-            <span><?php echo $movie['release_date']; ?> ‧ </span><span><?php echo implode(', ', $genres); ?> ‧ </span><span><?php echo $movie['runtime']; ?></span>
+            <span><?php echo $movie['release_date']; ?> ‧
+            </span><span><?php echo implode(', ', $genres); ?> ‧
+            </span><span><?php echo $movie['runtime']; ?></span>
         </div>
         <div>
             <span>
@@ -180,7 +179,7 @@ try {
                 <img src="<?php echo htmlspecialchars($movie['movie_image']); ?>" class="img-fluid" alt="Movie Image">
             </div>
             <div class="d-grid gap-2" style="max-width: 14rem">
-                <button class="btn btn-secondary purple-button">Add To WatchList <i class="fa fa-heart"></i></button>
+                <button class="btn btn-secondary purple-button" onclick="addToWatchlist('<?php echo $movie['movie_id'] ?> '); ">Add To WatchList <i class="fa fa-heart"></i></button>
                 <button class="btn btn-secondary yellow-button" onclick="redirectToRating('<?php echo $movie['movie_id'] ?> '); ">Rate this Movie <i class="fa fa-star"></i></button>
             </div>
         </div>
@@ -309,6 +308,32 @@ try {
     }
     function redirectToActorDetail(person_id) {
         window.location.href = 'actor.php?person_id=' + person_id;
+    }
+    function addToWatchlist(movie_id) {
+        if (localStorage.getItem('userData')) {
+            let userId = JSON.parse(localStorage.getItem('userData')).user_id;
+            $.ajax({
+                type: 'POST',
+                url: 'addToWatchlist.php',
+                data: {
+                    user_id: userId,
+                    movie_id: movie_id
+                },
+                success: function(response) {
+                    // Handle response
+                    console.log("success data", response);
+                    if (response) {
+                        alert(response);
+                        window.location.href = 'movie-detail.php?movie_id='+ movieId;
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr, status, error);
+                }
+            });
+        } else {
+            window.location.href = 'login.php';
+        }
     }
 </script>
 

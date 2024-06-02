@@ -74,9 +74,6 @@ if (!$comedyMovies) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 </head>
 <body>
 <!--Header-->
@@ -99,10 +96,10 @@ if (!$comedyMovies) {
         </div>
         <ul class="navbar-nav flex-row">
             <li class="nav-item border border-white rounded-circle mx-1 px-1">
-                <a class="nav-link text-light" href="/watchlist.php"><i class="fa fa-heart"></i></a>
+                <a class="nav-link text-light" href="./watchlist.php"><i class="fa fa-heart"></i></a>
             </li>
             <li class="nav-item border border-white rounded-circle mx-1 px-1">
-                <a class="nav-link text-light" href="/index.php"><i class="fa fa-user"></i></a>
+                <a class="nav-link text-light" href="./index.php"><i class="fa fa-user"></i></a>
             </li>
         </ul>
 
