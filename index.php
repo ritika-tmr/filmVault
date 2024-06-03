@@ -110,7 +110,7 @@ if (!$comedyMovies) {
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" id="reviewedMoviesLink" href="./reviewed.php">Reviewed Movies</a>
                     <div class="dropdown-divider" id="divider"></div>
-                    <a class="dropdown-item" id="loginLogoutLink" href="#"></a>
+                    <a class="dropdown-item" id="loginLogoutLink" href="#" onclick="removeUserData()"></a>
                 </div>
             </li>
         </ul>
@@ -406,6 +406,7 @@ function redirectToMovieDetail(movie_id) {
             if (userData) {
                 loginLogoutLink.textContent = 'Logout';
                 loginLogoutLink.href = './logout.html';
+                reviewedMoviesLink.href = './reviewed.php'
             } else {
                 loginLogoutLink.textContent = 'Login';
                 loginLogoutLink.href = './login.php';
@@ -413,6 +414,12 @@ function redirectToMovieDetail(movie_id) {
                 divider.style.display = 'none';
             }
         });
+        function removeUserData () {
+            const userData = localStorage.getItem('userData');
+            if (userData) {
+                localStorage.removeItem('userData');
+            }
+        }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
