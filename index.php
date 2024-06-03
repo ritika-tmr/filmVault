@@ -70,11 +70,10 @@ if (!$comedyMovies) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>FilmVault</title>
     <link rel="stylesheet" href="homepage.css">
+    <link rel="icon" href="./assets/Logo/FilmVault_purple2-removebg-preview.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -90,11 +89,11 @@ if (!$comedyMovies) {
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <form class="d-flex me-3 w-100" role="search">
+            <form class="d-flex me-3 w-100" role="search" action="category.php" method="GET">
                 <div class="input-group">
                     <span class="input-group-text rounded-start-pill"><i class="fa fa-search"></i></span>
-                    <input type="text" class="form-control" placeholder="Search by movie name" aria-label="Search Movies">
-                    <span class="input-group-text rounded-end-circle"><i class="fa fa-sliders"></i></span>
+                    <input type="text" class="form-control" placeholder="Search by movie name" aria-label="Search Movies" name="search_query">
+                    <span class="input-group-text rounded-end-circle"><a href="./category.php"><i class="fa fa-filter" aria-hidden="true"></i></a></span>
                 </div>
             </form>
         </div>
@@ -102,7 +101,6 @@ if (!$comedyMovies) {
             <li class="nav-item border border-white rounded-circle mx-1 px-1">
                 <a class="nav-link text-light" href="./watchlist.php"><i class="fa fa-heart"></i></a>
             </li>
-
             <li class="nav-item dropdown border border-white rounded-circle mx-1 px-1">
                 <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-user"></i>
@@ -174,6 +172,7 @@ if (!$comedyMovies) {
             <p class="lead">
                 Check out this week’s most popular movies and find out where to watch them.
             </p>
+            <a href="./category.php" class="btn btn-light">Show All</a>
         </div>
         <!--Card-->
         <div class="row col-sm-6 col-md-8 col-lg-10 g-3">
@@ -217,6 +216,7 @@ if (!$comedyMovies) {
             <p class="lead">
                 Check out this week’s most popular romantic movies and find out where to watch them.
             </p>
+            <a href="./category.php" class="btn btn-light">Show All</a>
         </div>
         <!--Card-->
         <div class="row col-sm-6 col-md-8 col-lg-10 g-3">
@@ -260,6 +260,7 @@ if (!$comedyMovies) {
             <p class="lead">
                 Check out this week’s most popular action movies and find out where to watch them.
             </p>
+            <a href="./category.php" class="btn btn-light">Show All</a>
         </div>
         <!--Card-->
         <div class="row col-sm-6 col-md-8 col-lg-10 g-3">
@@ -303,6 +304,7 @@ if (!$comedyMovies) {
             <p class="lead">
                 Check out this week’s most popular comedy movies and find out where to watch them.
             </p>
+            <a href="./category.php" class="btn btn-light">Show All</a>
         </div>
         <!--Card-->
         <div class="row col-sm-6 col-md-8 col-lg-10 g-3">
