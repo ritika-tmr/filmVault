@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 02, 2024 at 04:21 AM
+-- Generation Time: Jun 03, 2024 at 07:55 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -533,7 +533,70 @@ INSERT INTO `Rating` (`rating_id`, `movie_id`, `rating`, `review`, `rating_date`
 (17, 117, 5, 'Such a meaningful and artistic work!', '2024-06-02 02:01:05', 805),
 (18, 118, 3, 'Nice', '2024-06-02 02:01:05', 802),
 (19, 119, 4, 'For the music and romance lovers.', '2024-06-02 02:01:05', 803),
-(20, 120, 3, 'Good movie but abit overrated', '2024-06-02 02:02:15', 803);
+(20, 120, 3, 'Good movie but abit overrated', '2024-06-02 02:02:15', 803),
+(21, 101, 4, 'This was the perfect family night movie. I loved the music although at first I thought it would be annoying. I enjoyed the scenes and the costumes and everything about this magical film. I would definitely watch it again.', '2024-06-03 15:53:34', 803),
+(22, 101, 5, 'I love the circus. I love quality cinema. Not since Billy Rose\'s Jumbo (1962) has a motion picture so successfully combined these two elements. I wouldn\'t be surprised if it won the same awards as Cecil B. DeMille\'s The Greatest Show on Earth (1952). Michael Gracey skillfully brought together the best music, choreography, cast, cinematography, visual effects, costumes, and set decoration I have seen in recent years, all fresh and original, and integrated them into nothing short of a masterpiece.', '2024-06-03 15:55:40', 804),
+(23, 101, 4, 'Just watch and enjoy it, it\'s fun and that\'s what I want In times like these, and my kids love it!', '2024-06-03 15:57:29', 805),
+(24, 102, 5, 'Best movie ever. Heath ledger\'s work is phenomenal no words......', '2024-06-03 16:00:05', 802),
+(25, 102, 5, 'This movie is a work of art. The finest sequel ever made. I don\'t think we will see another movie like this for a long time. Heath Ledger\'s Joker is the best movie charachter I have ever seen by far. Avengers Endgame is great, but The Dark Knight is much better. The best Batman ever! The best Joker ever! The best DC movie ever! The best superhero movie ever! Ando for me, the best movie ever!', '2024-06-03 16:00:05', 804),
+(26, 102, 5, 'It is just what you want for the best movie. Great story great acting, thrilling twist. Just watched Joker in 2019, I just has to come back and give dark knight a 10. And thanks to Heath Ledger for the exceptional performs.', '2024-06-03 16:00:05', 805),
+(27, 103, 5, 'This movie is a masterpiece. It will make you belly laugh, it will chill you to the bone, and it will make you shed a tear. This movie will stay with you long after the credits are over.', '2024-06-03 16:02:35', 802),
+(28, 103, 4, 'This is a well written and well perfomed original film. With a lot of repetitive cinema these day i felt this was something new. I felt connected and engaged with the character throughout the film. There are several well directed tense moments throughout the film. A popular topic of class struggled well portrayed. Its always nice to see foreign language films having worldwide success.', '2024-06-03 16:02:35', 803),
+(29, 103, 3, 'The film is interesting, but that\'s about it. The first hour was really slow, the whole class thing seemed quite familiar. I\'m not sure why people are falling over themselves about this film, maybe since it was Korean yet with an accessible story and familiar film language that it suddenly moved westerners to \'see the light\'? Anyway, the second half twists and turns struck me more as a wacky story line I would have seen on a soap opera back in the day like Young and the Restless or Days of our Lives. Overall, I\'m more critical of the critics than of the film. I recommend seeing this, it\'s worth a look but all the Oscars and \'best film of the decade\' stuff is incomprehensible.', '2024-06-03 16:02:35', 805),
+(30, 104, 4, 'I went in with the highest expectations and came out underwhelmed and disappointed. its nowhere near as good as infinity war !!!', '2024-06-03 16:04:51', 802),
+(31, 104, 5, 'After watching Infinity war, I was looking forward to much more this time, still a perfect ending.', '2024-06-03 16:04:51', 803),
+(32, 104, 2, 'After Infinity War I had huge expectations. Unfortunately I think it doesn\'t follow the comic book at all because they wanted some kind of closure of the story. I saw a lot of 10 star reviews and I cannot believe the majority of people like this movie more than Infinity War. I\'m not saying it wasn\'t entertainment to watch but the feeling is that all heroes were forced to fit in a movie paying a big price to the story. There are moments in the movie where the rules from all other Marvel movies are broken and characters which were build over hours of screen time were reduced in order to make space for others. The story is average at best with big flaws.', '2024-06-03 16:04:51', 805),
+(33, 105, 5, 'Great job by Foster and Hopkins. Hannibal\'s part could have been fleshed out a little more, though (sorry, couldn\'t resist that one). The book described him in more detail and made him even more reprehensible; the movie could have spent five minutes more and done the same.', '2024-06-03 16:07:01', 803),
+(35, 105, 5, 'This movie is so gorgeous. Its like an art project. The cinematography makes me wanna take my eyes out because after this movie, theres nothing else I can see that hits that level of beauty. Anthony Hopkins did an amazing job and so did Jodie Foster. But even the more minor roles are amazing like Kasi Lemmons as Ardelia Mapp. The plot is so thoughtfully put together. The characters are great, creepy, and like a painting. I cannot describe how well this movie is made when it comes to the creepiness. Or anything. This movie deserved all of the awards and I hope everyone will enjoy it as much as I.', '2024-06-03 16:07:01', 805),
+(38, 106, 5, 'Outstanding animation; funny, weird, scary and touching at the same time, this unique work of art is one I can\'t recommend enough. 10 out of 10.', '2024-06-03 16:09:37', 803),
+(39, 106, 3, 'Undeniably an amazing art-style and a rich, immersive background score. Particularly so for a movie released in 2001. However, I for one did not get the story. I feel like this movie is art which I have not understood. The plot left me feeling confused and unsatisfied.', '2024-06-03 16:09:37', 805),
+(40, 106, 4, 'This movie is all about alienation and moving to a different world (or suburb, as you will). It captures the feeling of being trapped in this alien world full of new places, new people, and strange legends and myths that you grow accustomed to overtime. Each character that the protagonist meets is in someway an archetype of a personality you confront as a child without knowing you\'re confronting them at first and draws upon those archetypes to craft a journey through what seems like a pit of despair at first until you begin to take more control of the situation, essentially \'growing up\'. There are a few Japanese cultural quirks that drag down an other-wise stellar animated film, but it still shines as an exemplary childhood tale.', '2024-06-03 16:09:37', 802),
+(41, 107, 3, 'I remember when I saw the trailers for this movie, I thought it would be a sad but sweet love story and nothing more. And while it is that it brings so much more flare and beauty that I would never have expected from this. It took me three years to see it and it far out shone any expectation I had.', '2024-06-03 16:11:41', 803),
+(42, 107, 5, 'Dream or Love? My favorite movie!!!', '2024-06-03 16:11:41', 802),
+(43, 107, 5, 'The vibrant colors and use of musical scores to set the mood for scenes transported myself back in time. This movie feels not only like a beautifully nostalgic nod to Hollywood of yesteryear, but also that of a timeless love story. Gosling and Stone have a charm to their chemistry on screen during the musical and dance numbers. All these aspects lead to a raw portrayal of love that many experience in life, with still providing a sense of hope and wonder to the viewers. I was entranced from the opening scene until the final note played by Goslings piano. I absolutely recommend this film to any and everyone!', '2024-06-03 16:11:41', 804),
+(44, 108, 4, 'Lighten Up with UP! It\'s up there as one of the best animation movies of all-time!', '2024-06-03 16:13:31', 803),
+(45, 108, 5, 'One of the best movies ever made! It will put you through every emotion that a human can experience, that is, if you are an adult and not a psychopath.', '2024-06-03 16:13:31', 804),
+(46, 108, 5, 'Paradox! If you asked Rick Astley for a copy of this movie he wouldn\'t because he stated \'I\'m never gonna give you up\' but then he would be letting you down. Therein lies the Rick Astley Paradox.', '2024-06-03 16:13:31', 805),
+(47, 109, 4, 'I am a big fan of the animated movies coming from the Pixar Studios. They are always looking for the newest technological possibilities to use in their movies, creating movies that are more than just worth a watch, even when they were made a decade ago.', '2024-06-03 16:15:08', 803),
+(48, 109, 4, 'I am a big fan of the animated movies coming from the Pixar Studios. They are always looking for the newest technological possibilities to use in their movies, creating movies that are more than just worth a watch, even when they were made a decade ago.', '2024-06-03 16:15:18', 803),
+(49, 109, 5, 'This is as close to perfection as any animated film has come, entertained parents on a equal plane with their children, and set the bar to the top of the animation film industry. No film has yet come close to Toy Story in legitimizing animation as a film art on the level of movies with live actors. Great comedies are hard to come by - Toy Story strikes gold on that basis alone, but is so much more. One of the Top 100 Greatest Films of All Time, and currently resides on my \'Top 10 Greatest Comedy Films (1960-Present)\' list.', '2024-06-03 16:15:18', 804),
+(50, 109, 5, 'Toy Story is a sheer delight to view on the screen. The characters are well done, the plot is exceptional, and the best thing of all, the film is entirely produced on the computer. The animation is extraordinary in it\'s ability to bring such great entertainment to the screen. The film also teaches some good lessons for the kids like friendship (mainly between Woody and Buzz Light-year). Spectacular entertainment all around and one of the best films Disney has come with.', '2024-06-03 16:15:18', 805),
+(51, 110, 4, 'Not a spoon feeding of CGI fueled faux drama.\r\nThe movie affects you in a way that makes it physically painful to experience, but in a good way.', '2024-06-03 16:17:01', 803),
+(52, 110, 3, 'I thought this film was good but I just don\'t get the hype personally. The acting was amazing and the film was good overall but I think \'masterpiece\' and \'film of the year\' are a bit overused throughout the reviews. In no way did I dislike this film, I thought it was really good, just overhyped. I feel as though a lot of the 10/10 reviews are purely based on the fact that it already has amazing reviews and so people want to carry the praise further and that it is about the joker. If this film was released and was about some random guy in the same situation, I don\'t think the reviews would be as high but maybe that\'s the point.', '2024-06-03 16:17:01', 804),
+(53, 110, 5, 'This is a movie that only those who have felt alone and isolated can truly relate to it. You understand the motive and you feel sorry for the character. A lot of people will see this movie and think that it encourages violence. But truly, this movie should encourage each and every one of us to become a better person, treat everyone with respect and make each other feel like they belong in this world, instead of making them feel isolated.', '2024-06-03 16:17:01', 802),
+(54, 111, 4, 'Don\'t be fooled by its name, it\'s a great movie.', '2024-06-03 16:19:04', 803),
+(55, 111, 5, 'Best of all. The way of narrating the story touches the soul in the heart because the college life which we go through it have shown so many rules when it will start imagining in your own real life that is really true in every life we have certain role and we have to go through it.', '2024-06-03 16:19:04', 802),
+(56, 111, 3, 'Good in comedy but somewhat below expectation!!!', '2024-06-03 16:19:04', 805),
+(57, 112, 4, 'The power of music, the joy of music', '2024-06-03 16:20:38', 805),
+(58, 112, 4, 'The power of music, the joy of music', '2024-06-03 16:20:47', 805),
+(59, 112, 5, 'Let me confess I\'m not a Catholic, I don\'t have children, I can\'t stand schmaltz and yet I love The Sound Of Music. I\'ve tried to explain this to myself, let alone to others, without ever finding a satisfactory answer. Yesterday I sat to see it again with a group of kids who hadn\'t seen it before. They all loved it even the ones who loved Transporters. I asked them afterwards why did they loved it so much and a 12 year old boy\'s reply was: \'It makes you feel alive\' Wow, I thought, Wow! Of course, that\'s what I felt too and a 12 year old found the perfect words to express my feelings. Julie Andrews is a the center of this little miracle. She is Sister Maria and her wishes, thoughts and fears are recognizable automatically, because they are, in many ways, my same wishes, thoughts and fears. Perfect. Thank you.', '2024-06-03 16:20:47', 804),
+(60, 112, 5, 'Song and dance is definitely not my thing. However I\'ve seen this movie dozens and dozens of times overs the years. It never gets old... if you have never seen it it\'s well worth your time. They just don\'t make them like this anymore. Rent it or buy it, a true classic that is perfect from start to finish...', '2024-06-03 16:20:47', 802),
+(61, 113, 5, 'I have lost count of how many times I have watched this wonderfully written and acted Christmas romance themed classic film. At least once a year so that would be at least seventeen (17) times now. Great songs, a superb cast from top to bottom, heartwarming romances, and of course a must see \'FEEL GOOD\' ending.', '2024-06-03 16:22:49', 805),
+(62, 113, 3, 'A unique movie with a lot of stories being portrayed simultaneously.', '2024-06-03 16:22:49', 802),
+(63, 113, 4, 'Love Actually is an almost perfect comedy. It tells many different stories simultaneously and every single one of them is engaging and funny. Because of the multiple plots the spectator doesn\'t have time to get bored. The different scenarios are quite diverse and depict people of different ages, cultures, wealth. Therefore, there is a high likelihood that the spectator finds at least one of the stories relatable. Every character goes through ups and downs but the movie rewards us with a feel-good ending, which makes it a perfect Christmas and family movie. I truly believe that love actually is a benchmark for all comedies and Christmas movies out there.', '2024-06-03 16:22:49', 803),
+(64, 114, 4, 'This movie was pretty good. It was better than I expected. I especially loved the performance of Natasha Richardson, who is really gorgeous. Dennis Quaid was cute too. Lindsay Lohan was incredible too. My 8 year old sisters loved the original and got the new one and fell in love with it too. They are already reciting it. Rent both versions and enjoy both! They are great!', '2024-06-03 16:25:04', 805),
+(65, 114, 5, 'Walt Disney\'s 1998 remake of The Parent Trap is a sensational piece of family entertainment. This film marks the theatrical debut of the incredibly attractive Lindsay Lohan, who is now one of today\'s biggest stars. Lohan was a great choice for the dual role shown in this wonderful two-hour show. Lohan was beautiful even as a preteen (she was 11 years old when this movie was made). When I saw this movie for the first time, both of her characters, Hallie and Annie, really captivated me. Lohan really sparkles and does some adorable stuff throughout the entire motion picture. Both Hallie and Annie have a strong way with affection, and that is something that I deeply admire. I was touched when the two girls hugged each other in the camp\'s isolation cabin. Hugs are joyful and so is this movie!', '2024-06-03 16:25:04', 803),
+(66, 114, 3, 'No joke, there is no movie I\'ve seen more times than this one. Why? Because I grew up watching this on TV and the more I saw it, the better it was. The movie is fun, it can really entertaining almost anyone of any age. Now that I see it as an adult I found that it has really no sense, how can a parent don\'t recognize their daughter? But well, it is just a remake of the original...we go and judge the other one about the plot.', '2024-06-03 16:25:04', 804),
+(67, 115, 5, 'I watched the movie long time ago, and I\'ve just rewatched it today. For kids it will be a funny movie with no meaning maybe!! But for an adult, its so true!! You lose your childhood personality you change you feel sad, i mean it literally touches my soul Great movie for both kids and adults.', '2024-06-03 16:27:42', 805),
+(68, 115, 3, 'Given by Pixar which once again made the miracle.Nice analyse of the insight world,wonderful scenery and nice background.', '2024-06-03 16:27:42', 804),
+(69, 115, 5, 'Tears of Joy!!! Before I start, I will say this; I\'m writing this after coming back from a second viewing of Inside Out. Both viewings were out of choice. That\'s not a unique thing, but I very rarely watch films more than once at the cinema, mainly because life is short, or rather, life is too quick for me. But there\'s two main reasons why people watch some films more than once at the cinema, especially where I come from; either the film was interesting, detailed, or multi-layered and needs to be seen again to sink in properly, or, it was really, really good.', '2024-06-03 16:27:42', 802),
+(70, 116, 4, 'Exceptionally painful to watch but Will Smith\'s performance is very, very nice.', '2024-06-03 16:29:32', 804),
+(71, 116, 5, 'I was blessed to have seen this movie last night. It made me laugh, it made me cry and it made me love life.\r\n\r\nThis movie is a great movie that depicts a love of a father for his son. Will Smith did an incredible job and deserves every accolade available to him. His son also did a fantastic job.\r\n\r\nThere is a great lesson that is learned in this movie and it truly shares the struggles of everyday life.\r\n\r\nThis movie was heart felt and touching. It was truly an experience worth having. Thank you for making this movie and I look forward to seeing it again.', '2024-06-03 16:29:32', 803),
+(72, 116, 4, 'I was involved with one of the first test audiences almost a year ago, and came away quite impressed with the acting performances and heartfelt punch of Pursuit of Happiness. This is easily one of Smith\'s best films, as he pours his heart and soul into the main character. While the plot may remain a bit transparent, it leaves you asking the question of yourself - how long would you keep battling to get what you really want out of life? I plan on seeing the film again when it releases to the general public, and am very interested to see what changes were made after running it through the test screenings. As I saw it then, it needed very few, if any, changes.', '2024-06-03 16:29:32', 802),
+(73, 117, 3, 'Although I liked the cinematography and thought that the acting was amazing, the plot wasn\'t as solid and the story fell slightly flat as a result. The first part about the grave relocation made sense, but I have to admit that I lost the plot when the second coffin was introduced and the story shifted to focus on the Japanese spirit. The first part was definitely more structured and it had a build up that made things interesting. The second part, in contrast, seemed like an afterthought. Even as I\'m writing this review, I have no idea what the connection was between the first coffin and the second one. Like I really thought the second part would be more chilling/ominous but it just left me confused.', '2024-06-03 16:31:06', 804),
+(74, 117, 4, 'Exhuma is a South Korean horror film that has garnered critical acclaim for its suspenseful atmosphere and exploration of Korean folklore. The narrative delves into themes of family history and hidden truths, uncovering a chilling mystery. As the characters investigate deeper, they encounter a series of unexplained events that blur the lines between reality and the supernatural. Exhuma has been lauded for its unique blend of Korean folklore with classic horror tropes. This fresh approach is said to create a suspenseful and unsettling cinematic experience. Critics have also commended the film\'s slow-burn pacing, which keeps viewers engaged as the mystery gradually unfolds. Exhuma is likely to appeal to fans of horror cinema who enjoy films that weave cultural themes into their narratives.', '2024-06-03 16:31:06', 803),
+(75, 117, 5, 'Superb ensemble. Choi Min-sik\'s casting alone already sets the tone for the movie. The other actors are also all already proven artisans so not much more to say.\r\n\r\nGood, strong storytelling but the production value and the overall atmosphere including the sound engineering was what really sold it for me.\r\n\r\nUsually ghost films are one or the other. Either paranormal with invisible spirits leaving the rest to imagination or showing the actual monsters for a more direct interaction with the characters. This movie was very interesting in the sense that they mixed the two and in a very clever way.\r\n\r\nAlso, very refreshing to learn about Asian/Korean and Buddhism influenced lores over the \'now almost cliche Western/Christian ones.', '2024-06-03 16:31:06', 802),
+(76, 118, 2, 'I can see I am in the minority here, but, to be honest, I found the film to be quite intriguing and exciting. I went into the movie \'cold\', not having read the novel by James Dashner or knowing very much about the plot. For me, this was the type of film that I knew if I just went with the flow and didn\'t try and look for all the holes in the story and script that I\'d be better off.', '2024-06-03 16:33:10', 804),
+(77, 118, 3, 'Wow, I really anticipated on this movie, suspense, action, the unknown, it all sounds very exciting. Now I must say that I have seen some very good movies and series round this theme that may influence my judgment, for example The Cube (1 - 3), Persons Unknown, Saw, etc. all have a person or group of persons who don\'t know how they get there or how to get away. How is it possible that those movies, some dating from 1997, are so much better then a 2014 movie? And being almost 2 hours long, how come so little happens in those 2 hours? Some reviewers already mentioned the contradictory and illogical elements in this movie, and yes, this does this movie, with such much potential, not much good, it\'s just annoying to see them not try what is so logic. The movie is entertaining, but leaves you very unsatisfied.', '2024-06-03 16:33:10', 803),
+(78, 118, 4, 'The Maze Runner is not to be missed one if you like sci-fi movies, which are good crafted and tells interesting stories. It\'s not revolutionary good, but it does a very good job for a one evening viewing. I will look forward for sequels.', '2024-06-03 16:33:10', 805),
+(79, 119, 3, 'Intelligent, Entertaining, Warm and exciting.', '2024-06-03 16:35:39', 805),
+(80, 119, 4, 'Really a pleasant surprise - delightfully not full of cheese! I was expecting a cheesy film. I am not into musicals so was hesitant to commit to this film, in a theatre. But, I was pleasantly surprised. I find some of Ruffalos work, like Now you see me, to be hard to sit through. I did not dislike that film, but I hated his performance. Part of it was how vapid the character was. In this film it is the opposite. He is charming, roguish, creative, and delightful to watch. Quite frankly I did not think Knightly was up to this either. Was I ever surprised. She was great. Well written, well directed, and very good overall. In these days of Hollywood losing its edge, and producing more and more low quality, derivative work, it is refreshing to see a film like this one. And I did not even need to use my earplugs. Transformer this film was not. Thankfully.', '2024-06-03 16:35:39', 804),
+(81, 119, 4, 'I knew virtually nothing about this film - hadn\'t even seen the trailer - when I drug my wife to see it last night, and we were both very pleasantly surprised. The characters are drawn in such a way that they are both like-able and relatable. In the end, the film builds emotion with the audience not by means of incredible stretches of the imagination, but through a gradually reinforced empathy. I have seen all the summer blockbusters, and the single largest failure in most of them is that they create shallow characters that the audience does not care about.\r\nThe dynamics used in this movie cause an engagement in the audience that is necessary in ANY film for it to be great. This one is not to be missed in the CGI-filled summer.', '2024-06-03 16:35:39', 802),
+(82, 120, 4, 'I\'d heard this movie was good and finally got around to watching it. When it was done I looked on IMDB and saw hundreds of 1 and 2 star reviews that I can only fathom were written by people who would hate anything with an almost entirely black cast that focused on a fictional or real African culture, or dislike seeing empowered women characters. Was it my favorite in the MCU? No. Are there people who give it 10 stars just because of the all black cast? Maybe. But 1 Star? Please. That\'s just Alt-Right spamming. It\'s a good contribution to the overarching MCU storyline. Worth watching.', '2024-06-03 16:37:29', 805),
+(83, 120, 5, 'The King has now rested. Don\'t know how I will relay this news to my kids. Especially my daughter, she loved Black Panther so much. Great talented cast. On a comic book level, this movie was very worthy. That\'s what we wanted especially when it comes to Marvel. Chadwick Boseman will always be King T\'Challa. Will be hard to replace him. Wakanda forever!', '2024-06-03 16:37:29', 804),
+(84, 120, 3, 'A great addition to the MCU. Great acting, beautiful visuals and some intense action. First impressive thing I noticed was its rich attention to detail in world building and its characters. My only criticism, I would have like to have seen more of the Killmonger character, as I feel they didn\'t go far enough with him. Over-all, this is a fun and enjoyable movie with action, comedy, drama. There are some complex social political overtones mixed in, but it never feels heavy handed, and I feel that the over-all message is positive for humanity as a whole. If this type of movie isn\'t your cup of tea, fair enough, but if you are on the fence about watching due to pre-conceived notions about its content and message, I would recommend you give it a try, and I think you will be pleasantly surprised.', '2024-06-03 16:37:29', 803),
+(85, 120, 2, 'I am between a 5 and a 6 on this. It was vastly overrated by the professional reviewers. I am sure their reviews were politically motivated. I loved the cast but I agree that characters were superficial and not defined as they should have been. I also feel more humor was needed in the movie. This can\'t compare to other Marvel movies. It\'s a one shot deal for us. We don\'t need to hear any more preaching.', '2024-06-03 16:37:29', 802),
+(86, 120, 3, 'I watch this twice and I&#039;ve always found a bit confusing and interesting. I&#039;ll try to watch it again and grasp it. The fact that Chadwick Bozeman was fighting cancer whilst filming this just shows what a great actor he is. He should really get an award and I really want to like this movie just because of what he did..', '2024-06-03 17:40:39', 805);
 
 -- --------------------------------------------------------
 
@@ -556,23 +619,38 @@ INSERT INTO `Users` (`user_id`, `username`, `user_email`, `user_pwd`) VALUES
 (800, 'admin', 'admin@mail.com', '123456789'),
 (801, 'user_test', 'usertest@mail.com', 'user123'),
 (802, 'Amie', 'amie@gmail.com', '$2y$10$dd3KiAdii9Byts.fmOLW9OfC3liNyvLCNGBFnWZrjqvrg8acTZbjy'),
-(803, 'user1', 'user1@gmail.com', '$2y$10$w2pOTXofIQp0o9ztm4LhceYn3cqlqyUYv/C5Zqv/ILuzbhjclyBrG'),
-(804, 'user2', 'user2@gmail.com', '$2y$10$TeX5JFASwedbpKuo7cs.1e.9rZsuFLpQyZjulsZnkBV4f2adhm64.'),
-(805, 'user3', 'user3@gmail.com', '$2y$10$aD/HZs/ykcSOF.nA98HSyuVf7sfkT9fl.YZTg3gW8BFtymI5NT6K6');
+(803, 'Min', 'min@gmail.com', '$2y$10$w2pOTXofIQp0o9ztm4LhceYn3cqlqyUYv/C5Zqv/ILuzbhjclyBrG'),
+(804, 'Lanah', 'lanah@gmail.com', '$2y$10$TeX5JFASwedbpKuo7cs.1e.9rZsuFLpQyZjulsZnkBV4f2adhm64.'),
+(805, 'Joshy', 'joshy@gmail.com', '$2y$10$aD/HZs/ykcSOF.nA98HSyuVf7sfkT9fl.YZTg3gW8BFtymI5NT6K6');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Watchlist`
+-- Table structure for table `watchlist`
 --
 
-CREATE TABLE `Watchlist` (
-  `watchlist_id` int(11) DEFAULT NULL,
+CREATE TABLE `watchlist` (
+  `watchlist_id` int(11) NOT NULL,
   `movie_id` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `watchlist_name` varchar(255) DEFAULT NULL,
   `created_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `watchlist`
+--
+
+INSERT INTO `watchlist` (`watchlist_id`, `movie_id`, `user_id`, `created_date`) VALUES
+(1, 113, 802, '2024-06-03 14:29:47'),
+(2, 110, 802, '2024-06-03 15:26:45'),
+(3, 109, 802, '2024-06-03 15:27:45'),
+(4, 108, 802, '2024-06-03 15:28:46'),
+(5, 105, 805, '2024-06-03 17:07:24'),
+(6, 109, 805, '2024-06-03 17:08:03'),
+(7, 102, 805, '2024-06-03 17:08:11'),
+(8, 118, 805, '2024-06-03 17:08:18'),
+(9, 105, 805, '2024-06-03 17:39:59'),
+(10, 108, 805, '2024-06-03 17:46:10');
 
 --
 -- Indexes for dumped tables
@@ -665,9 +743,10 @@ ALTER TABLE `Users`
   ADD PRIMARY KEY (`user_id`);
 
 --
--- Indexes for table `Watchlist`
+-- Indexes for table `watchlist`
 --
-ALTER TABLE `Watchlist`
+ALTER TABLE `watchlist`
+  ADD PRIMARY KEY (`watchlist_id`),
   ADD KEY `movie_id` (`movie_id`),
   ADD KEY `user_id` (`user_id`);
 
@@ -679,13 +758,19 @@ ALTER TABLE `Watchlist`
 -- AUTO_INCREMENT for table `Rating`
 --
 ALTER TABLE `Rating`
-  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `Users`
 --
 ALTER TABLE `Users`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=806;
+
+--
+-- AUTO_INCREMENT for table `watchlist`
+--
+ALTER TABLE `watchlist`
+  MODIFY `watchlist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
@@ -734,9 +819,9 @@ ALTER TABLE `Rating`
   ADD CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`movie_id`) REFERENCES `Movie` (`movie_id`);
 
 --
--- Constraints for table `Watchlist`
+-- Constraints for table `watchlist`
 --
-ALTER TABLE `Watchlist`
+ALTER TABLE `watchlist`
   ADD CONSTRAINT `watchlist_ibfk_1` FOREIGN KEY (`movie_id`) REFERENCES `Movie` (`movie_id`),
   ADD CONSTRAINT `watchlist_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `Users` (`user_id`);
 COMMIT;
