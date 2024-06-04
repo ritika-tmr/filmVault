@@ -4,7 +4,7 @@ require 'db.php'; // Your database connection file
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $query = "SELECT rating, review, rating_date, m.title,  m.movie_image, m.movie_id,m.overview
                         FROM Rating r 
-                        INNER JOIN movie m ON m.movie_id = r.movie_id 
+                        INNER JOIN Movie m ON m.movie_id = r.movie_id 
                         WHERE user_id = :user_id
                         ORDER BY r.rating DESC";
     $user_id = $_POST['user_id'];

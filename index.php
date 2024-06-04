@@ -2,37 +2,37 @@
 require 'db.php';
 
 $query_top = "SELECT m.movie_id, m.title, m.overview, m.movie_image, AVG(r.rating) AS avg_rating
-              FROM movie m
-              LEFT JOIN rating r on r.movie_id = m.movie_id
+              FROM Movie m
+              LEFT JOIN Rating r on r.movie_id = m.movie_id
               GROUP BY m.movie_id, m.title, m.overview, m.movie_image
               ORDER BY avg_rating DESC
               LIMIT 4;";
 $query_action = "SELECT m.movie_id, m.title, m.overview, m.movie_image,
               AVG(r.rating) AS avg_rating, GROUP_CONCAT(g.genre_name) AS genre_name
-              FROM movie m
-              LEFT JOIN rating r on r.movie_id = m.movie_id
-              LEFT JOIN movie_genre mg on mg.movie_id = m.movie_id
-              LEFT JOIN genre g on g.genre_id = mg.genre_id
+              FROM Movie m
+              LEFT JOIN Rating r on r.movie_id = m.movie_id
+              LEFT JOIN Movie_Genre mg on mg.movie_id = m.movie_id
+              LEFT JOIN Genre g on g.genre_id = mg.genre_id
               WHERE g.genre_name = 'Action'
               GROUP BY m.movie_id, m.title, m.overview, m.movie_image
               ORDER BY avg_rating DESC
               LIMIT 4;";
 $query_romance = "SELECT m.movie_id, m.title, m.overview, m.movie_image,
               AVG(r.rating) AS avg_rating, GROUP_CONCAT(g.genre_name) AS genre_name
-              FROM movie m
-              LEFT JOIN rating r on r.movie_id = m.movie_id
-              LEFT JOIN movie_genre mg on mg.movie_id = m.movie_id
-              LEFT JOIN genre g on g.genre_id = mg.genre_id
+              FROM Movie m
+              LEFT JOIN Rating r on r.movie_id = m.movie_id
+              LEFT JOIN Movie_Genre mg on mg.movie_id = m.movie_id
+              LEFT JOIN Genre g on g.genre_id = mg.genre_id
               WHERE g.genre_name = 'Romance'
               GROUP BY m.movie_id, m.title, m.overview, m.movie_image
               ORDER BY avg_rating DESC
               LIMIT 4;";
 $query_comedy = "SELECT m.movie_id, m.title, m.overview, m.movie_image,
               AVG(r.rating) AS avg_rating, GROUP_CONCAT(g.genre_name) AS genre_name
-              FROM movie m
-              LEFT JOIN rating r on r.movie_id = m.movie_id
-              LEFT JOIN movie_genre mg on mg.movie_id = m.movie_id
-              LEFT JOIN genre g on g.genre_id = mg.genre_id
+              FROM Movie m
+              LEFT JOIN Rating r on r.movie_id = m.movie_id
+              LEFT JOIN Movie_Genre mg on mg.movie_id = m.movie_id
+              LEFT JOIN Genre g on g.genre_id = mg.genre_id
               WHERE g.genre_name = 'Comedy'
               GROUP BY m.movie_id, m.title, m.overview, m.movie_image
               ORDER BY avg_rating DESC

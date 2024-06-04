@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $movie_id =  htmlspecialchars($_POST['movie_id']);
     if ($rating && $review) {
         try {
-            $stmt = $db->prepare('INSERT INTO rating (movie_id, rating, review, user_id) VALUES (?, ?, ?, ?)');
+            $stmt = $db->prepare('INSERT INTO Rating (movie_id, rating, review, user_id) VALUES (?, ?, ?, ?)');
             if ($stmt -> execute([$movie_id, $rating, $review, $user_id])){
 //                echo '<div class="alert alert-success" role="alert">';
                 echo 'Rating successful!';

@@ -10,14 +10,14 @@ $search_query = isset($_GET['search_query']) ? $_GET['search_query'] : '';
 // Construct the main query
 $query_movie = "SELECT m.movie_id, m.title, m.overview, m.movie_image,
                 AVG(r.rating) AS avg_rating, GROUP_CONCAT(g.genre_name) AS genre_name
-                FROM movie m
-                LEFT JOIN rating r ON r.movie_id = m.movie_id
-                LEFT JOIN movie_genre mg ON mg.movie_id = m.movie_id
-                LEFT JOIN genre g ON g.genre_id = mg.genre_id
-                LEFT JOIN movie_language ml ON ml.movie_id = m.movie_id
-                LEFT JOIN language l ON l.language_id = ml.language_id
-                LEFT JOIN production_country pc ON pc.movie_id = m.movie_id
-                LEFT JOIN country c ON c.country_id = pc.country_id";
+                FROM Movie m
+                LEFT JOIN Rating r ON r.movie_id = m.movie_id
+                LEFT JOIN Movie_Genre mg ON mg.movie_id = m.movie_id
+                LEFT JOIN Genre g ON g.genre_id = mg.genre_id
+                LEFT JOIN Movie_Language ml ON ml.movie_id = m.movie_id
+                LEFT JOIN Language l ON l.language_id = ml.language_id
+                LEFT JOIN Production_Country pc ON pc.movie_id = m.movie_id
+                LEFT JOIN Country c ON c.country_id = pc.country_id";
 
 // Add filtering conditions
 $whereClause = "";

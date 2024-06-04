@@ -22,8 +22,8 @@ try {
 
     // Fetch movie cast
     $stmt = $db->prepare("SELECT m.title, mc.character_name, m.movie_image, m.movie_id
-                                FROM movie m
-                                INNER JOIN movie_cast mc ON m.movie_id = mc.movie_id
+                                FROM Movie m
+                                INNER JOIN Movie_Cast mc ON m.movie_id = mc.movie_id
                                 WHERE mc.person_id = :person_id;");
     $stmt->execute(['person_id' => $person_id]);
     $movieList = $stmt->fetchAll(PDO::FETCH_ASSOC);

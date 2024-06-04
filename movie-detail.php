@@ -67,7 +67,7 @@ try {
     // Fetch All ratings
     $stmt = $db->prepare("SELECT rating, review, rating_date, u.username 
                         FROM Rating r 
-                        INNER JOIN users u ON u.user_id = r.user_id 
+                        INNER JOIN Users u ON u.user_id = r.user_id 
                         WHERE movie_id = :movie_id");
     $stmt->execute(['movie_id' => $movie_id]);
     $allRating = $stmt->fetchAll(PDO::FETCH_ASSOC);
