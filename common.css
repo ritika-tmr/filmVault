@@ -79,3 +79,10 @@ body {
 .yellow-button {
     background: #F6AE2D !important;
 }
+.error-msg {
+    background: #c66c74;
+    color: white;
+    border-radius: 10px;
+    padding: 1rem;
+    margin: 1rem 0;
+}

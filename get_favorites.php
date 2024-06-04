@@ -2,7 +2,7 @@
 require 'db.php'; // Your database connection file
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $query_movie = "SELECT m.title,  m.movie_image, m.movie_id,m.overview,COALESCE(AVG(r.rating), 0) AS avg_rating
+    $query_movie = "SELECT m.title,  m.movie_image, m.movie_id,m.overview, w.watchlist_id, COALESCE(AVG(r.rating), 0) AS avg_rating
                     FROM Movie m
                     LEFT JOIN watchlist w ON m.movie_id = w.movie_id
                     LEFT JOIN Rating r ON r.movie_id = m.movie_id
@@ -24,4 +24,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo json_encode(['error' => 'Invalid user ID']);
     }
 }
-?><?php
+?>

@@ -13,28 +13,34 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-$(document).ready(function() {
-    if (localStorage.getItem('userData')) {
-        let userId = JSON.parse(localStorage.getItem('userData')).user_id;
-                $.ajax({
-                    type: 'POST',
-                    url: 'get_reviews.php',
-                    data: { user_id: userId },
-                    success: function(response) {
-            let reviwed = JSON.parse(response);
-                        // Handle the response to display favorite movies
-                        console.log(reviwed);
-                        renderMovies(reviwed)
-                    },
-                    error: function(xhr, status, error) {
-            console.error(xhr, status, error);
-        }
-                });
-            } else {
-        window.location.href = 'login.php';
-    }
+        $(document).ready(function() {
+            if (localStorage.getItem('userData')) {
+                let userId = JSON.parse(localStorage.getItem('userData')).user_id;
+                        $.ajax({
+                            type: 'POST',
+                            url: 'get_reviews.php',
+                            data: { user_id: userId },
+                            success: function(response) {
+                                    console.log("the response should be here", response);
+                                if (response) {
+                                    console.log("the response should be here", response);
+                                    let reviewed= JSON.parse(response);
+                                    // Handle the response to display favorite movies
+                                    console.log("reviewed");
+                                    renderMovies(reviewed);
+                                } else {
+                                    renderMovies([]);
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                    console.error(xhr, status, error);
+                }
+                        });
+                    } else {
+                window.location.href = 'login.php';
+            }
 
-});
+        });
         function renderMovies(movies) {
             const container = document.getElementById('fav-list');
             container.innerHTML = '';
@@ -66,9 +72,37 @@ $(document).ready(function() {
                     const cardBody = document.createElement('div');
                     cardBody.className = 'card-body';
 
+                    const heading = document.createElement('div');
+                    heading.className = 'd-flex justify-content-between'
+
+
                     const title = document.createElement('h5');
                     title.className = 'card-title';
                     title.textContent = `${index + 1}. ${movie.title}`;
+
+                    const close = document.createElement('button');
+                    close.className = 'fa fa-times btn big-icon btn-outline-danger';
+                    close.addEventListener('click', function () {
+                        if(confirm("Are you sure?")) {
+                            $.ajax({
+                                type: 'POST',
+                                url: 'delete_review.php',
+                                data: { rating_id: movie.rating_id },
+                                success: function(response) {
+                                    let res = JSON.parse(response);
+                                    if (res.success) {
+                                        alert(res.success);
+                                        location.reload();
+                                    } else {
+                                        alert(res.error);
+                                    }
+                                },
+                                error: function(xhr, status, error) {
+                                    console.error(xhr, status, error);
+                                }
+                            });
+                        }
+                    })
 
                     const starSpan = document.createElement('span');
                     for (let i = 1; i <= 5; i++) {
@@ -84,7 +118,9 @@ $(document).ready(function() {
                     overview.className = 'card-text truncated-text';
                     overview.textContent = movie.review;
 
-                    cardBody.appendChild(title);
+                    cardBody.appendChild(heading)
+                    heading.appendChild(title);
+                    heading.appendChild(close);
                     cardBody.appendChild(starSpan);
                     cardBody.appendChild(overview);
 
@@ -98,7 +134,6 @@ $(document).ready(function() {
                 container.innerHTML = '<div>No data found</div>';
             }
         }
-    </script>
     </script>
 </head>
 <body>

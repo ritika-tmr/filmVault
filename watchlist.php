@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -66,9 +67,37 @@
                     const cardBody = document.createElement('div');
                     cardBody.className = 'card-body';
 
+                    const heading = document.createElement('div');
+                    heading.className = 'd-flex justify-content-between'
+
+
                     const title = document.createElement('h5');
                     title.className = 'card-title';
                     title.textContent = `${index + 1}. ${movie.title}`;
+
+                    const close = document.createElement('button');
+                    close.className = 'fa fa-times btn big-icon btn-outline-danger';
+                    close.addEventListener('click', function () {
+                        if(confirm("Are you sure?")) {
+                            $.ajax({
+                                type: 'POST',
+                                url: 'delete_fav.php',
+                                data: { watchlist_id: movie.watchlist_id },
+                                success: function(response) {
+                                    let res = JSON.parse(response);
+                                    if (res.success) {
+                                        alert(res.success);
+                                        location.reload();
+                                    } else {
+                                        alert(res.error);
+                                    }
+                                },
+                                error: function(xhr, status, error) {
+                                    console.error(xhr, status, error);
+                                }
+                            });
+                        }
+                    })
 
                     const starSpan = document.createElement('span');
                     for (let i = 1; i <= 5; i++) {
@@ -84,7 +113,9 @@
                     overview.className = 'card-text truncated-text';
                     overview.textContent = movie.overview;
 
-                    cardBody.appendChild(title);
+                    cardBody.appendChild(heading)
+                    heading.appendChild(title);
+                    heading.appendChild(close);
                     cardBody.appendChild(starSpan);
                     cardBody.appendChild(overview);
 

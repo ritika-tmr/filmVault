@@ -1,6 +1,8 @@
 <?php
 require 'db.php';
 
+$error = '';
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -21,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "window.location.href = 'index.php';";
         echo "</script>";
     } else {
-        echo "Invalid email or password.";
+        $error = "Invalid email or password.";
     }
     
 }
@@ -88,6 +90,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
     <div class="col-md-10 mx-auto col-lg-5">
       <form method="POST" class="p-4 p-md-5 login-card shadow">
+          <?php if($error): ?>
+          <div class="error-msg">
+              <span>
+                 <?php echo $error ?>
+              </span>
+          </div>
+          <?php endif; ?>
         <div class="mb-3">
           <label for="floatingEmail">Email address</label>
           <input type="email" class="form-control" id="floatingEmail" name="email" placeholder="name@example.com" required>
