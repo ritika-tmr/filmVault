@@ -109,7 +109,7 @@ try {
                 <div class="input-group">
                     <span class="input-group-text rounded-start-pill"><i class="fa fa-search"></i></span>
                     <input type="text" class="form-control" placeholder="Search by movie name" aria-label="Search Movies" name="search_query">
-                    <span class="input-group-text rounded-end-circle"><a href="./category.php"><i class="fa fa-filter" aria-hidden="true"></i></a></span>
+                    <span class="input-group-text rounded-end-circle"><a href="./category.php"><i class="fa fa-filter" style="color: #9173E5" aria-hidden="true"></i></a></span>
                 </div>
             </form>
         </div>
@@ -122,7 +122,7 @@ try {
                 <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-user"></i>
                 </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink" style="left: 50% !important; transform: translateX(-50%) !important;">
                     <a class="dropdown-item" id="reviewedMoviesLink" href="./reviewed.php">Reviewed Movies</a>
                     <div class="dropdown-divider" id="divider"></div>
                     <a class="dropdown-item" id="loginLogoutLink" href="#" onclick="removeUserData()"></a>
@@ -202,10 +202,12 @@ try {
             <hr class="my-4">
             <h5>Top Cast</h5>
             <p>
-                <?php foreach ($cast as $member): ?>
+                <?php foreach ($cast as $index => $member): ?>
                     <u class="person-name"  onclick="redirectToActorDetail(<?php echo $member['person_id']  ?>)"><?php echo $member['person_name']  ?></u>
                     <span> as <?php echo $member['character_name'] ;  ?></span>
+                <?php if ($index + 1 < count($cast)): ?>
                     <span class="dot"></span>
+                    <?php endif; ?>
                 <?php endforeach; ?>
 
             </p>
@@ -260,7 +262,7 @@ try {
   <div class="container">
     <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5">
       <div class="col mb-3">
-        <a href="/" class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none">
+        <a href="./index.php" class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none">
           <img src="./assets/Logo/FilmVault_purple2-removebg-preview.png" alt="Logo" width="100" height="78" class="bi me-2">
         </a>
         <p class="text-light">Your Ultimate Cinematic Companion. Discover, organize, and explore your favorite films with ease. Create personalized watchlists, leave insightful reviews, and connect with fellow movie enthusiasts. Dive into a world of cinema with FilmVault.</p>
@@ -272,35 +274,31 @@ try {
       </div>
 
       <div class="col mb-3">
-        <h5>Section</h5>
+        <h5>Contact</h5>
         <ul class="nav flex-column">
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Home</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Features</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Pricing</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">FAQs</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">About</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light"><i class= "fa fa-envelope-o"></i> contact@filmvault.com</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light"><i class= "fa fa-phone"></i> 02 9999 9999</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">About Us</a></li>
         </ul>
       </div>
 
       <div class="col mb-3">
-        <h5>Section</h5>
+        <h5>Information</h5>
         <ul class="nav flex-column">
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Home</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Features</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Pricing</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">FAQs</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">About</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Terms of Service</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Privacy Policy</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Cookie Policy</a></li>
+          
         </ul>
       </div>
 
       <div class="col mb-3">
-        <h5>Section</h5>
+        <h5>Support</h5>
         <ul class="nav flex-column">
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Home</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Features</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Pricing</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Help Center</a></li>
           <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">FAQs</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">About</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Feedback</a></li>
+          
         </ul>
       </div>
     </footer>
@@ -343,8 +341,6 @@ try {
             window.location.href = 'login.php';
         }
     }
-</script>
-<script>
         document.addEventListener("DOMContentLoaded", function() {
             const loginLogoutLink = document.getElementById('loginLogoutLink');
             const reviewedMoviesLink = document.getElementById('reviewedMoviesLink');

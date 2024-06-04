@@ -7,7 +7,6 @@ body {
     font-weight: 400;
     font-style: normal;
 }
-
 .playfair-display {
     font-family: "Playfair Display", serif;
     font-optical-sizing: auto;
@@ -27,7 +26,7 @@ body {
 
 .footer {
     background-color: #010B11;
-    color: #86A8CF;
+    color: #9173E5;
 }
 .checked {
     color: #F6AE2D;
@@ -52,7 +51,12 @@ body {
     max-width: 14rem !important;
 }
 .purple-button {
-    background: #9173E5 !important;
+    background-color: #9173E5 !important;
+    color: white !important;
+    border: none !important;
+}
+.big-icon {
+    font-size: 3rem !important;
 }
 .yellow-button {
     background: #F6AE2D !important;

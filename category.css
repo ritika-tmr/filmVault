@@ -24,10 +24,14 @@ body {
     background-color: #042A45;
     color: white;
 }
-
+.purple-button {
+    background-color: #9173E5 !important;
+    color: white !important;
+    border: none !important;
+}
 .footer {
     background-color: #010B11;
-    color: #86A8CF;
+    color: #9173E5;
 }
 .checked {
     color: #F6AE2D;
